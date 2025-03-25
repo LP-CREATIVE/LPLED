@@ -407,4 +407,45 @@
           <a href="#financials">Financials</a>
           <a href="#team">Team</a>
           <a href="index.html">Salary Dashboard</a>
-        </div
+        </div<a href="index.html">Salary Dashboard</a>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <p>301 S Third St<br>
+          Smithville, TN 37166<br>
+          lucas@lpcreative.studio<br>
+          (615) 815-7685/p>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Investment Disclaimer</a>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Real Estate Digital Signs. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
