@@ -116,9 +116,6 @@ const App = () => {
     ? selectedDepartment.roles.filter(role => role.yearlySalary).sort((a, b) => b.yearlySalary - a.yearlySalary)
     : [];
 
-  // Get Recharts components to avoid having to use dot notation
-  const { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } = Recharts;
-
   return (
     <div className="dashboard">
       <div className="header">
@@ -185,92 +182,6 @@ const App = () => {
         </div>
       </div>
 
-      {/* Charts grid */}
-      <div className="grid-2-col">
-        {/* Department breakdown */}
-        <div className="chart-container">
-          <h3 className="chart-title">Workforce by Department</h3>
-          <div style={{ height: 300 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={departmentPieData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                >
-                  {departmentPieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value) => [`${value} positions`, 'Count']} />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Department salaries */}
-        <div className="chart-container">
-          <h3 className="chart-title">
-            {selectedDepartment ? `${selectedDepartment.name} Salaries` : 'Department Salaries'}
-          </h3>
-          {selectedDepartment && (
-            <div className="chart-subtitle">
-              Average: {formatCurrency(selectedDepartment.avgSalary)} | 
-              Range: {formatCurrency(selectedDepartment.minSalary)} - {formatCurrency(selectedDepartment.maxSalary)}
-            </div>
-          )}
-          <div style={{ height: 300 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={departmentRolesData}
-                layout="vertical"
-                margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" tickFormatter={(value) => `$${value/1000}k`} />
-                <YAxis dataKey="role" type="category" width={90} />
-                <Tooltip 
-                  formatter={(value) => [formatCurrency(value), 'Annual Salary']}
-                  labelFormatter={(label) => `Role: ${label}`}
-                />
-                <Bar dataKey="yearlySalary" fill="#8884d8" name="Annual Salary" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
-      {/* Company-wide salaries */}
-      <div className="chart-container">
-        <h3 className="chart-title">Company-wide Salary Comparison</h3>
-        <div style={{ height: 400 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={salaryData}
-              margin={{ top: 5, right: 30, left: 20, bottom: 100 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="role" 
-                interval={0} 
-                angle={-45} 
-                textAnchor="end" 
-                height={100} 
-              />
-              <YAxis tickFormatter={(value) => `$${value/1000}k`} />
-              <Tooltip 
-                formatter={(value) => [formatCurrency(value), 'Annual Salary']}
-                labelFormatter={(label) => `Role: ${label}`}
-              />
-              <Bar dataKey="yearlySalary" name="Annual Salary" fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
       {/* Department summary table */}
       <div className="table-container">
         <h3 className="chart-title">Department Summary</h3>
@@ -302,5 +213,4 @@ const App = () => {
 };
 
 // Export the component so it can be used in index.html
-// In a browser environment with script tags, this makes App available globally
 window.App = App;
