@@ -1,3 +1,6 @@
+// Define React hooks at the top
+const { useState, useEffect } = React;
+
 // Define our main App component
 const App = () => {
   const [salaryData, setSalaryData] = useState([]);
@@ -7,7 +10,7 @@ const App = () => {
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
   
-  // This is our sample data - in a real app, you'd fetch this from an API or file
+  // This is our sample data
   const sampleData = [
     {department: "EXECUTIVE", role: "CEO", monthlySalary: 15000, yearlySalary: 180000, jobDescription: "Leads company vision, investor relations, and overall strategy."},
     {department: "EXECUTIVE", role: "COO", monthlySalary: 12500, yearlySalary: 150000, jobDescription: "Oversees daily operations, logistics, and execution of national install strategy."},
@@ -33,8 +36,7 @@ const App = () => {
   ];
 
   useEffect(() => {
-    // In a real app, we would fetch data from an API or file
-    // For this example, we'll use the sample data directly
+    // Process sample data on load
     processData(sampleData);
     setLoading(false);
   }, []);
@@ -114,6 +116,9 @@ const App = () => {
     ? selectedDepartment.roles.filter(role => role.yearlySalary).sort((a, b) => b.yearlySalary - a.yearlySalary)
     : [];
 
+  // Get Recharts components to avoid having to use dot notation
+  const { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } = Recharts;
+
   return (
     <div className="dashboard">
       <div className="header">
@@ -125,7 +130,7 @@ const App = () => {
       <div className="stats-grid">
         <div className="stat-card">
           <div className="icon-container">
-            <Recharts.Users size={24} color="#0088FE" />
+            <span className="icon">👥</span>
           </div>
           <div>
             <p>Total Positions</p>
@@ -135,7 +140,7 @@ const App = () => {
         
         <div className="stat-card">
           <div className="icon-container">
-            <Recharts.DollarSign size={24} color="#00C49F" />
+            <span className="icon">💵</span>
           </div>
           <div>
             <p>Average Salary</p>
@@ -145,7 +150,7 @@ const App = () => {
         
         <div className="stat-card">
           <div className="icon-container">
-            <Recharts.TrendingUp size={24} color="#FFBB28" />
+            <span className="icon">📈</span>
           </div>
           <div>
             <p>Highest Salary</p>
@@ -155,7 +160,7 @@ const App = () => {
         
         <div className="stat-card">
           <div className="icon-container">
-            <Recharts.Building size={24} color="#FF8042" />
+            <span className="icon">🏢</span>
           </div>
           <div>
             <p>Departments</p>
@@ -186,9 +191,9 @@ const App = () => {
         <div className="chart-container">
           <h3 className="chart-title">Workforce by Department</h3>
           <div style={{ height: 300 }}>
-            <Recharts.ResponsiveContainer width="100%" height="100%">
-              <Recharts.PieChart>
-                <Recharts.Pie
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
                   data={departmentPieData}
                   cx="50%"
                   cy="50%"
@@ -197,12 +202,12 @@ const App = () => {
                   label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                 >
                   {departmentPieData.map((entry, index) => (
-                    <Recharts.Cell key={`cell-${index}`} fill={entry.color} />
+                    <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Recharts.Pie>
-                <Recharts.Tooltip formatter={(value) => [`${value} positions`, 'Count']} />
-              </Recharts.PieChart>
-            </Recharts.ResponsiveContainer>
+                </Pie>
+                <Tooltip formatter={(value) => [`${value} positions`, 'Count']} />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
@@ -218,22 +223,22 @@ const App = () => {
             </div>
           )}
           <div style={{ height: 300 }}>
-            <Recharts.ResponsiveContainer width="100%" height="100%">
-              <Recharts.BarChart
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
                 data={departmentRolesData}
                 layout="vertical"
                 margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
               >
-                <Recharts.CartesianGrid strokeDasharray="3 3" />
-                <Recharts.XAxis type="number" tickFormatter={(value) => `$${value/1000}k`} />
-                <Recharts.YAxis dataKey="role" type="category" width={90} />
-                <Recharts.Tooltip 
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis type="number" tickFormatter={(value) => `$${value/1000}k`} />
+                <YAxis dataKey="role" type="category" width={90} />
+                <Tooltip 
                   formatter={(value) => [formatCurrency(value), 'Annual Salary']}
                   labelFormatter={(label) => `Role: ${label}`}
                 />
-                <Recharts.Bar dataKey="yearlySalary" fill="#8884d8" name="Annual Salary" />
-              </Recharts.BarChart>
-            </Recharts.ResponsiveContainer>
+                <Bar dataKey="yearlySalary" fill="#8884d8" name="Annual Salary" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
@@ -242,27 +247,27 @@ const App = () => {
       <div className="chart-container">
         <h3 className="chart-title">Company-wide Salary Comparison</h3>
         <div style={{ height: 400 }}>
-          <Recharts.ResponsiveContainer width="100%" height="100%">
-            <Recharts.BarChart
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
               data={salaryData}
               margin={{ top: 5, right: 30, left: 20, bottom: 100 }}
             >
-              <Recharts.CartesianGrid strokeDasharray="3 3" />
-              <Recharts.XAxis 
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis 
                 dataKey="role" 
                 interval={0} 
                 angle={-45} 
                 textAnchor="end" 
                 height={100} 
               />
-              <Recharts.YAxis tickFormatter={(value) => `$${value/1000}k`} />
-              <Recharts.Tooltip 
+              <YAxis tickFormatter={(value) => `$${value/1000}k`} />
+              <Tooltip 
                 formatter={(value) => [formatCurrency(value), 'Annual Salary']}
                 labelFormatter={(label) => `Role: ${label}`}
               />
-              <Recharts.Bar dataKey="yearlySalary" name="Annual Salary" fill="#82ca9d" />
-            </Recharts.BarChart>
-          </Recharts.ResponsiveContainer>
+              <Bar dataKey="yearlySalary" name="Annual Salary" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
@@ -280,7 +285,7 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-           {departmentData.map((dept) => (
+            {departmentData.map((dept) => (
               <tr key={dept.name}>
                 <td>{dept.name}</td>
                 <td>{dept.count}</td>
@@ -296,5 +301,6 @@ const App = () => {
   );
 };
 
-// Required React hooks - must be defined before using them
-const { useState, useEffect } = React;
+// Export the component so it can be used in index.html
+// In a browser environment with script tags, this makes App available globally
+window.App = App;
