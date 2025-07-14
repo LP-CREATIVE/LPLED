@@ -1,80 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Custom LED Signs, Digital Displays, and Scoreboards Built for Business Impact – LPCREATIVE">
-  <title>LPCREATIVE | Custom LED Signage & Scoreboards</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollreveal/4.0.9/scrollreveal.min.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      ScrollReveal().reveal('.sr-fade-up', {
-        duration: 1000,
-        origin: 'bottom',
-        distance: '50px',
-        easing: 'ease-in-out',
-        reset: false
-      });
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Space with Dynamic Digital Signage | SignageX</title>
+    <meta name="description" content="Revolutionary digital signage solutions that captivate audiences and drive results. Get 30% more engagement with our AI-powered displays.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glowing button */
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-button:hover::before {
+            opacity: 1;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Particle canvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Glass morphism cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Neon text effect */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.8),
+                         0 0 20px rgba(102, 126, 234, 0.6),
+                         0 0 30px rgba(102, 126, 234, 0.4),
+                         0 0 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        /* 3D transform for cards */
+        .transform-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        /* Pulse animation for CTA */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Loading animation */
+        .loading-dots span {
+            animation: loading 1.4s infinite both;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center bg-cover bg-center sr-fade-up" style="background-image: url('/images/hero-led.jpg');">
-    <div class="bg-black bg-opacity-70 p-8 rounded-xl text-center max-w-3xl animate-pulse">
-      <h1 class="text-5xl font-bold mb-4">Custom LED Signage That Turns Heads</h1>
-      <p class="text-xl mb-6">From digital business signs to massive jumbotrons and scoreboards – LPCREATIVE lights up your brand.</p>
-      <a href="#quote" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-semibold transition-transform transform hover:scale-105">Get a Free Quote</a>
+<body>
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Three.js 3D Scene Container -->
+    <div id="three-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+        <!-- Navigation -->
+        <nav class="fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="text-2xl font-bold gradient-text">SignageX</div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#features" class="hover:text-purple-400 transition-colors">Features</a>
+                        <a href="#showcase" class="hover:text-purple-400 transition-colors">Showcase</a>
+                        <a href="#pricing" class="hover:text-purple-400 transition-colors">Pricing</a>
+                        <a href="#contact" class="hover:text-purple-400 transition-colors">Contact</a>
+                    </div>
+                    <button class="glow-button px-6 py-2 rounded-full text-white font-semibold">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center relative px-6">
+            <div class="max-w-6xl mx-auto text-center">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 opacity-0" id="hero-title">
+                    <span class="gradient-text">Digital Signage</span><br>
+                    <span class="neon-text">That Captivates</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto opacity-0" id="hero-subtitle">
+                    Transform your space with AI-powered displays that adapt, engage, and convert. 
+                    Join 10,000+ businesses seeing 3x more engagement.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0" id="hero-cta">
+                    <button class="glow-button px-8 py-4 rounded-full text-lg font-semibold text-white pulse">
+                        Start Free Trial
+                    </button>
+                    <button class="glass-card px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10">
+                        Watch Demo
+                    </button>
+                </div>
+                <div class="mt-12 flex justify-center space-x-8 text-sm opacity-0" id="hero-stats">
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">97%</div>
+                        <div class="text-gray-400">Customer Satisfaction</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">3x</div>
+                        <div class="text-gray-400">More Engagement</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">24/7</div>
+                        <div class="text-gray-400">Support</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" id="scroll-indicator">
+                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl font-bold text-center mb-16">
+                    <span class="gradient-text">Revolutionary Features</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-2xl feature-card">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">AI-Powered Content</h3>
+                        <p class="text-gray-400">Dynamic content that adapts to your audience in real-time using advanced AI algorithms.</p>
+                    </div>
+                    
+                    <div class="glass-card p-8 rounded-2xl feature-card">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Real-Time Analytics</h3>
+                        <p class="text-gray-400">Track engagement, conversions, and ROI with our comprehensive analytics dashboard.</p>
+                    </div>
+                    
+                    <div class="glass-card p-8 rounded-2xl feature-card">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Multi-Device Sync</h3>
+                        <p class="text-gray-400">Seamlessly manage content across unlimited displays from a single dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive Showcase -->
+        <section id="showcase" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl font-bold text-center mb-16">
+                    <span class="gradient-text">See It In Action</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-6">Interactive 3D Preview</h3>
+                        <p class="text-gray-400 mb-8">
+                            Experience the power of our digital signage with this interactive 3D demonstration. 
+                            Rotate, zoom, and explore how your content comes to life.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span>4K Ultra HD Resolution</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span>60+ Pre-built Templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span>Custom Animation Engine</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-8 rounded-2xl h-96 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="loading-dots text-4xl mb-4">
+                                <span>•</span><span>•</span><span>•</span>
+                            </div>
+                            <p class="text-gray-400">3D Preview Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Proof -->
+        <section class="py-20 px-6 bg-gradient-to-b from-transparent to-purple-900/20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-4">
+                        <span class="gradient-text">Trusted By Industry Leaders</span>
+                    </h2>
+                    <p class="text-xl text-gray-400">Join thousands of businesses transforming their customer experience</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex mb-4">
+                            <span class="text-yellow-400">★★★★★</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">"SignageX transformed our retail experience. Customer engagement increased by 300% in just 2 months!"</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold">Sarah Chen</div>
+                                <div class="text-sm text-gray-400">CEO, TechRetail Inc</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex mb-4">
+                            <span class="text-yellow-400">★★★★★</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">"The AI-powered content adaptation is game-changing. Our conversion rates have never been higher."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold">Marcus Johnson</div>
+                                <div class="text-sm text-gray-400">Marketing Director, FoodChain</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="flex mb-4">
+                            <span class="text-yellow-400">★★★★★</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">"Setup was incredibly easy and the support team is outstanding. ROI positive within 30 days!"</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold">Emily Rodriguez</div>
+                                <div class="text-sm text-gray-400">Owner, Boutique Hotels</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-20 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-5xl font-bold mb-6">
+                    <span class="gradient-text">Ready to Transform Your Business?</span>
+                </h2>
+                <p class="text-xl text-gray-400 mb-8">
+                    Start your free 30-day trial today. No credit card required.
+                </p>
+                
+                <form class="max-w-md mx-auto mb-8" onsubmit="handleSubmit(event)">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email" 
+                            class="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 focus:border-purple-500 focus:outline-none"
+                            required
+                        >
+                        <button type="submit" class="glow-button px-8 py-3 rounded-full font-semibold">
+                            Get Started Free
+                        </button>
+                    </div>
+                </form>
+                
+                <p class="text-sm text-gray-500">
+                    🔒 Your data is secure. We'll never spam you.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="border-t border-white/10 py-12 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="text-2xl font-bold gradient-text mb-4">SignageX</div>
+                        <p class="text-gray-400">Revolutionizing digital displays worldwide.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Product</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Support</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/10 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 SignageX. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="py-20 bg-gray-900 sr-fade-up">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12 text-center">Our LED Solutions</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="hover:scale-105 transition-transform duration-300">
-          <h3 class="text-2xl font-semibold mb-2">Digital Business Signs</h3>
-          <p>Grab attention and drive foot traffic with high-brightness custom signs tailored to your storefront or venue.</p>
-        </div>
-        <div class="hover:scale-105 transition-transform duration-300">
-          <h3 class="text-2xl font-semibold mb-2">Scoreboards & Jumbotrons</h3>
-          <p>Stadium-ready, weather-proof LED scoreboards and massive jumbotrons for schools, arenas, and events.</p>
-        </div>
-        <div class="hover:scale-105 transition-transform duration-300">
-          <h3 class="text-2xl font-semibold mb-2">Full-Service Installation</h3>
-          <p>From design to engineering and install, we handle the full process for a seamless sign experience.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects / Portfolio Preview -->
-  <section class="py-20 bg-black sr-fade-up">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12 text-center">Featured Installs</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <img src="/images/project1.jpg" alt="High School Scoreboard" class="rounded-xl hover:scale-105 transition-transform duration-300">
-        <img src="/images/project2.jpg" alt="Retail LED Sign" class="rounded-xl hover:scale-105 transition-transform duration-300">
-        <img src="/images/project3.jpg" alt="Church Display" class="rounded-xl hover:scale-105 transition-transform duration-300">
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA / Quote -->
-  <section id="quote" class="py-20 bg-red-600 text-black sr-fade-up">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-4">Let’s Light Up Your Brand</h2>
-      <p class="mb-6 text-lg">Tell us about your project and we’ll deliver a custom quote within 24 hours.</p>
-      <a href="mailto:contact@lpcreative.studio" class="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-transform transform hover:scale-105">Start Your Quote</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 bg-gray-900 text-center text-sm text-gray-400 sr-fade-up">
-    &copy; 2025 LPCREATIVE. All rights reserved.
-  </footer>
+    
+    <script>
+        // Particle Background
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 100;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        
+        // Initialize particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(102, 126, 234, ${0.1 * (1 - distance / 100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+        
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Three.js Scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('three-container').appendChild(renderer.domElement);
+        
+        // Create floating cube
+        const geometry = new THREE.BoxGeometry(2, 2, 2);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x667eea,
+            emissive: 0x667eea,
+            emissiveIntensity: 0.2,
+            shininess: 100
+        });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+        
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const pointLight = new THREE.PointLight(0x667eea, 1);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+        
+        camera.position.z = 5;
+        
+        // Animate Three.js scene
+        function animateThree() {
+            requestAnimationFrame(animateThree);
+            
+            cube.rotation.x += 0.005;
+            cube.rotation.y += 0.005;
+            
+            renderer.render(scene, camera);
+        }
+        
+        animateThree();
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero animations
+        gsap.to("#hero-title", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+        gsap.to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.7 });
+        gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+        gsap.to("#hero-stats", { opacity: 1, y: 0, duration: 1, delay: 1.1 });
+        gsap.to("#scroll-indicator", { opacity: 1, duration: 1, delay: 1.3 });
+        
+        // Feature cards animation
+        gsap.utils.toArray(".feature-card").forEach((card, i) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // Form submission handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            
+            // Show success message
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = '✓ Success! Check your email';
+            button.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-600');
+                e.target.reset();
+            }, 3000);
+            
+            // Here you would typically send the email to your backend
+            console.log('Email submitted:', email);
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            gsap.to(cube.rotation, {
+                x: y * 0.5,
+                y: x * 0.5,
+                duration: 2,
+                ease: "power2.out"
+            });
+        });
+    </script>
 </body>
 </html>
-
