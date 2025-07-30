@@ -249,6 +249,171 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+        
+        /* LED Scoreboard Styles */
+        .led-scoreboard-container {
+            max-width: 600px;
+            perspective: 1000px;
+        }
+        
+        .led-scoreboard {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 
+                0 0 50px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transform: rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .led-scoreboard:hover {
+            transform: rotateX(0deg) scale(1.05);
+        }
+        
+        .led-border {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 3px solid #333;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .led-screen {
+            background: #000;
+            padding: 30px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .led-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .led-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .led-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .led-label {
+            font-family: 'Courier New', monospace;
+            color: #ff6b00;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 
+                0 0 10px #ff6b00,
+                0 0 20px #ff6b00,
+                0 0 30px #ff6b00,
+                0 0 40px #ff6b00;
+            letter-spacing: 3px;
+        }
+        
+        .led-score {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 
+                0 0 10px #00ff00,
+                0 0 20px #00ff00,
+                0 0 30px #00ff00,
+                0 0 40px #00ff00;
+            letter-spacing: 5px;
+            animation: led-flicker 2s infinite alternate;
+        }
+        
+        .led-time-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+        }
+        
+        .led-time {
+            font-family: 'Courier New', monospace;
+            color: #ffff00;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 
+                0 0 10px #ffff00,
+                0 0 20px #ffff00,
+                0 0 30px #ffff00;
+            letter-spacing: 4px;
+        }
+        
+        .led-period {
+            font-family: 'Courier New', monospace;
+            color: #ff0000;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 30px #ff0000;
+            letter-spacing: 3px;
+            animation: led-pulse 1.5s infinite;
+        }
+        
+        @keyframes led-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+        
+        @keyframes led-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .led-scoreboard {
+                padding: 15px;
+            }
+            
+            .led-screen {
+                padding: 20px;
+            }
+            
+            .led-label {
+                font-size: 18px;
+            }
+            
+            .led-score {
+                font-size: 36px;
+            }
+            
+            .led-time {
+                font-size: 28px;
+            }
+            
+            .led-period {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -277,7 +442,7 @@
                         <a href="#contact" class="hover:text-purple-400 transition-colors">Contact</a>
                     </div>
                     <button class="glow-button px-6 py-2 rounded-full text-white font-semibold">
-                        Get Started
+                        Free Quote
                     </button>
                 </div>
             </div>
@@ -286,6 +451,45 @@
         <!-- Hero Section -->
         <section class="min-h-screen flex items-center justify-center relative px-6">
             <div class="max-w-6xl mx-auto text-center">
+                <!-- LED Digital Scoreboard -->
+                <div class="mb-12" id="led-scoreboard" style="opacity: 1;">
+                    <div class="mx-auto" style="max-width: 800px; perspective: 1000px;">
+                        <div id="scoreboard-main" style="background: linear-gradient(145deg, #1a1a1a, #000); padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 -10px 30px rgba(255,255,255,0.1); transform: rotateX(5deg); transition: all 0.3s ease;" onmouseover="this.style.transform='rotateX(0deg) scale(1.02)'" onmouseout="this.style.transform='rotateX(5deg) scale(1)'">
+                            <div style="background: #111; padding: 20px; border-radius: 15px; border: 4px solid #333; box-shadow: inset 0 0 50px rgba(0,0,0,0.9);">
+                                <div style="background: #000; padding: 40px; border-radius: 10px; position: relative; overflow: hidden; box-shadow: inset 0 0 100px rgba(0,255,0,0.1);">
+                                    <!-- LED Matrix Effect -->
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,0,0.03) 3px, rgba(0,255,0,0.03) 6px), repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,255,0,0.03) 3px, rgba(0,255,0,0.03) 6px); pointer-events: none;"></div>
+                                    
+                                    <div style="position: relative; z-index: 1;">
+                                        <!-- Title -->
+                                        <div style="text-align: center; margin-bottom: 30px;">
+                                            <span style="font-family: 'Courier New', monospace; color: #00ff00; font-size: 32px; font-weight: bold; text-transform: uppercase; letter-spacing: 8px; text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;">LED Display</span>
+                                        </div>
+                                        
+                                        <!-- Scores -->
+                                        <div style="display: flex; justify-content: space-around; margin-bottom: 30px;">
+                                            <div style="text-align: center;">
+                                                <div style="font-family: 'Courier New', monospace; color: #ff6b00; font-size: 28px; font-weight: bold; text-shadow: 0 0 15px #ff6b00, 0 0 30px #ff6b00; letter-spacing: 4px; margin-bottom: 10px;">HOME</div>
+                                                <div style="font-family: 'Courier New', monospace; color: #00ff00; font-size: 72px; font-weight: bold; text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00; letter-spacing: 8px;" id="home-score">24</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-family: 'Courier New', monospace; color: #ff6b00; font-size: 28px; font-weight: bold; text-shadow: 0 0 15px #ff6b00, 0 0 30px #ff6b00; letter-spacing: 4px; margin-bottom: 10px;">AWAY</div>
+                                                <div style="font-family: 'Courier New', monospace; color: #00ff00; font-size: 72px; font-weight: bold; text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00; letter-spacing: 8px;" id="away-score">17</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Time and Period -->
+                                        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; padding-top: 20px; border-top: 3px solid #333;">
+                                            <div style="font-family: 'Courier New', monospace; color: #ffff00; font-size: 48px; font-weight: bold; text-shadow: 0 0 15px #ffff00, 0 0 30px #ffff00, 0 0 45px #ffff00; letter-spacing: 6px;" id="game-time">12:45</div>
+                                            <div style="font-family: 'Courier New', monospace; color: #ff0000; font-size: 36px; font-weight: bold; text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000; letter-spacing: 4px; animation: pulse 2s infinite;">3RD</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <h1 class="text-6xl md:text-8xl font-bold mb-6 opacity-0" id="hero-title">
                     <span class="gradient-text">Digital Signage</span><br>
                     <span class="neon-text">That Captivates</span>
@@ -1067,11 +1271,51 @@
         gsap.registerPlugin(ScrollTrigger);
         
         // Hero animations
+        gsap.from("#led-scoreboard", { y: -50, duration: 1, delay: 0.3, ease: "power3.out" });
         gsap.to("#hero-title", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
         gsap.to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.7 });
         gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 1, delay: 0.9 });
         gsap.to("#hero-stats", { opacity: 1, y: 0, duration: 1, delay: 1.1 });
         gsap.to("#scroll-indicator", { opacity: 1, duration: 1, delay: 1.3 });
+        
+        // LED Scoreboard Animation
+        function updateScoreboard() {
+            // Update time
+            const timeElement = document.getElementById('game-time');
+            const currentTime = timeElement.textContent;
+            const [minutes, seconds] = currentTime.split(':').map(Number);
+            
+            let newSeconds = seconds - 1;
+            let newMinutes = minutes;
+            
+            if (newSeconds < 0) {
+                newSeconds = 59;
+                newMinutes = minutes - 1;
+            }
+            
+            if (newMinutes >= 0) {
+                timeElement.textContent = `${newMinutes.toString().padStart(2, '0')}:${newSeconds.toString().padStart(2, '0')}`;
+            } else {
+                timeElement.textContent = '00:00';
+            }
+            
+            // Occasionally update scores
+            if (Math.random() > 0.95) {
+                const homeScore = document.getElementById('home-score');
+                const awayScore = document.getElementById('away-score');
+                
+                if (Math.random() > 0.5) {
+                    homeScore.textContent = parseInt(homeScore.textContent) + Math.floor(Math.random() * 3) + 1;
+                } else {
+                    awayScore.textContent = parseInt(awayScore.textContent) + Math.floor(Math.random() * 3) + 1;
+                }
+            }
+        }
+        
+        // Start scoreboard animation after a delay
+        setTimeout(() => {
+            setInterval(updateScoreboard, 1000);
+        }, 2000);
         
         // Feature cards animation
         gsap.utils.toArray(".feature-card").forEach((card, i) => {
