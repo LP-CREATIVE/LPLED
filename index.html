@@ -451,9 +451,39 @@
         <!-- Hero Section -->
         <section class="min-h-screen flex items-center justify-center relative px-6">
             <div class="max-w-6xl mx-auto text-center">
-                <!-- Stadium Jumbotron -->
-                <div class="mb-16" id="led-scoreboard" style="opacity: 1;">
-                    <div class="mx-auto" style="max-width: 900px; perspective: 1500px;">
+                <!-- Stadium Jumbotron with Background -->
+                <div class="mb-16" id="led-scoreboard" style="opacity: 1; position: relative;">
+                    <!-- Stadium Background Container -->
+                    <div style="position: absolute; inset: -150px; overflow: hidden; border-radius: 20px;">
+                        <!-- Stadium Image Placeholder - Replace src with your stadium image -->
+                        <!-- <img src="stadium-image.jpg" alt="Stadium" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: blur(2px);"> -->
+                        
+                        <!-- CSS Stadium Effect -->
+                        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center bottom, rgba(0,50,0,0.4) 0%, rgba(0,0,0,0.8) 100%);"></div>
+                        
+                        <!-- Stadium Lights -->
+                        <div style="position: absolute; top: -50px; left: 10%; width: 150px; height: 400px; background: conic-gradient(from 180deg at 50% 0%, transparent 45deg, rgba(255,255,200,0.6) 50deg, rgba(255,255,200,0.6) 130deg, transparent 135deg); filter: blur(30px); opacity: 0.7;"></div>
+                        <div style="position: absolute; top: -50px; right: 10%; width: 150px; height: 400px; background: conic-gradient(from 180deg at 50% 0%, transparent 45deg, rgba(255,255,200,0.6) 50deg, rgba(255,255,200,0.6) 130deg, transparent 135deg); filter: blur(30px); opacity: 0.7;"></div>
+                        <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 150px; height: 400px; background: conic-gradient(from 180deg at 50% 0%, transparent 45deg, rgba(255,255,200,0.8) 50deg, rgba(255,255,200,0.8) 130deg, transparent 135deg); filter: blur(30px); opacity: 0.8;"></div>
+                        
+                        <!-- Crowd Effect -->
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 350px; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.7) 60%, transparent 100%);">
+                            <!-- Animated Crowd Dots -->
+                            <div style="position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 80%, rgba(255,200,0,0.3) 0%, transparent 2%), radial-gradient(circle at 80% 60%, rgba(255,100,0,0.3) 0%, transparent 2%), radial-gradient(circle at 40% 40%, rgba(255,255,255,0.2) 0%, transparent 2%), radial-gradient(circle at 60% 70%, rgba(200,200,255,0.2) 0%, transparent 2%); background-size: 5px 5px, 6px 6px, 4px 4px, 5px 5px; animation: crowdWave 10s ease-in-out infinite;"></div>
+                        </div>
+                        
+                        <!-- Field Glow -->
+                        <div style="position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); width: 80%; height: 200px; background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, transparent 70%); filter: blur(50px);"></div>
+                    </div>
+                    
+                    <style>
+                        @keyframes crowdWave {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-5px); }
+                        }
+                    </style>
+                    
+                    <div class="mx-auto" style="max-width: 900px; perspective: 1500px; position: relative; z-index: 10;">
                         <!-- Jumbotron Frame -->
                         <div style="background: #2a2a2a; padding: 15px; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 10px 30px rgba(0,0,0,0.8); transform: rotateX(8deg); transition: transform 0.3s ease;">
                             <!-- Outer Bezel -->
