@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/webhook/outrank.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/web design/$1" }
