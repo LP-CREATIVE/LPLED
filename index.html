@@ -9,9 +9,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -425,9 +422,6 @@
     <!-- Particle Background -->
     <canvas id="particle-canvas"></canvas>
     
-    <!-- Three.js 3D Scene Container -->
-    <div id="three-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
-    
     <!-- Main Content -->
     <div class="relative z-10">
         <!-- Navigation -->
@@ -646,7 +640,7 @@
         <section id="pricing" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-12">
-                    <div>
+                    <div class="glass-card p-8 rounded-2xl">
                         <h3 class="text-2xl font-bold mb-6">Display Pricing Calculator</h3>
                         
                         <div class="space-y-6">
@@ -714,7 +708,7 @@
                         </div>
                     </div>
                     
-                    <div>
+                    <div class="glass-card p-8 rounded-2xl">
                         <h3 class="text-2xl font-bold mb-6">Your Investment Details</h3>
                         
                         <div class="space-y-4">
@@ -1192,47 +1186,6 @@
             canvas.height = window.innerHeight;
         });
         
-        // Three.js Scene
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        document.getElementById('three-container').appendChild(renderer.domElement);
-        
-        // Create floating cube
-        const geometry = new THREE.BoxGeometry(2, 2, 2);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x667eea,
-            emissive: 0x667eea,
-            emissiveIntensity: 0.2,
-            shininess: 100
-        });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-        
-        // Add lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
-        
-        const pointLight = new THREE.PointLight(0x667eea, 1);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-        
-        camera.position.z = 5;
-        
-        // Animate Three.js scene
-        function animateThree() {
-            requestAnimationFrame(animateThree);
-            
-            cube.rotation.x += 0.005;
-            cube.rotation.y += 0.005;
-            
-            renderer.render(scene, camera);
-        }
-        
-        animateThree();
         
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
@@ -1298,18 +1251,6 @@
             });
         });
         
-        // Mouse parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 2;
-            const y = (e.clientY / window.innerHeight - 0.5) * 2;
-            
-            gsap.to(cube.rotation, {
-                x: y * 0.5,
-                y: x * 0.5,
-                duration: 2,
-                ease: "power2.out"
-            });
-        });
         
         // Pricing Calculator
         function updatePricing() {
