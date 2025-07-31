@@ -1332,7 +1332,29 @@
             
             // Update calculation breakdown in left panel
             document.getElementById('total-sqft').textContent = sqFt.toFixed(1);
-            document.getElementById('price-per-sqft').textContent = 'lyPrice) {
+            document.getElementById('price-per-sqft').textContent = '$' + pricePerSqFt;
+            document.getElementById('num-displays-show').textContent = numDisplays;
+            
+            // Update total price in left panel
+            document.getElementById('total-price-calc').textContent = '$' + totalPrice.toLocaleString();
+            
+            // Update summary in right panel
+            document.getElementById('display-type-summary').textContent = screenType.charAt(0).toUpperCase() + screenType.slice(1);
+            document.getElementById('size-summary').textContent = width + "' × " + height + "'";
+            document.getElementById('sqft-summary').textContent = sqFt.toFixed(1);
+            document.getElementById('displays-summary').textContent = numDisplays;
+            
+            // Update total price in right panel
+            document.getElementById('total-price').textContent = '$' + totalPrice.toLocaleString();
+        }
+        
+        // Initialize pricing on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePricing();
+        });
+        
+        // ROI Chart function
+        function updateROIChart(monthlyPrice) {
             const canvas = document.getElementById('roi-chart');
             const ctx = canvas.getContext('2d');
             
