@@ -461,21 +461,66 @@
             
             <div class="max-w-6xl mx-auto text-center">
                 
+                <!-- Hero Badge -->
+                <div class="inline-block mb-6 opacity-0" id="hero-badge">
+                    <div class="bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-500/30 px-6 py-2 rounded-full">
+                        <span class="text-sm font-medium text-purple-300">🚀 #1 LED Display Solutions Provider</span>
+                    </div>
+                </div>
+                
                 <h1 class="text-6xl md:text-8xl font-bold mb-6 opacity-0" id="hero-title">
-                    <span class="gradient-text">Digital Signage</span><br>
-                    <span class="neon-text">That Captivates</span>
+                    <span class="block text-white mb-2">Bring Your Vision</span>
+                    <span class="gradient-text">TO LIFE</span>
+                    <span class="block text-3xl md:text-5xl mt-4 text-white">With Stadium-Grade LED Displays</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto opacity-0" id="hero-subtitle">
-                    Transform your space with AI-powered displays that adapt, engage, and convert. 
-                    Join 10,000+ businesses seeing 3x more engagement.
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto opacity-0" id="hero-subtitle">
+                    From high school scoreboards to professional stadiums, we deliver crystal-clear, 
+                    weather-resistant LED displays that command attention and drive engagement.
                 </p>
+                
+                <!-- Trust Indicators -->
+                <div class="flex flex-wrap justify-center gap-6 mb-10 opacity-0" id="hero-trust">
+                    <div class="flex items-center gap-2 text-gray-300">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>500+ Installations</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-300">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>5-Year Warranty</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-300">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+                
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0" id="hero-cta">
-                    <button class="glow-button px-8 py-4 rounded-full text-lg font-semibold text-white pulse">
-                        Start Free Trial
+                    <button class="glow-button px-10 py-5 rounded-full text-xl font-bold text-white pulse transform hover:scale-105 transition-all duration-300">
+                        Get Your Free Quote
+                        <span class="ml-2">→</span>
                     </button>
-                    <button class="glass-card px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10">
-                        Watch Demo
-                    </button>
+                    <div class="flex items-center gap-3">
+                        <button class="glass-card px-8 py-5 rounded-full text-lg font-semibold hover:bg-white/10 flex items-center gap-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                            See It In Action
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Urgency Message -->
+                <div class="mt-8 text-center opacity-0" id="hero-urgency">
+                    <p class="text-sm text-yellow-400 font-medium">
+                        ⚡ Limited Time: Free Installation on Orders This Month
+                    </p>
                 </div>
                 <div class="mt-12 flex justify-center space-x-8 text-sm opacity-0" id="hero-stats">
                     <div>
@@ -1242,11 +1287,14 @@
         gsap.registerPlugin(ScrollTrigger);
         
         // Hero animations
+        gsap.to("#hero-badge", { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
         gsap.to("#hero-title", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
         gsap.to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.7 });
-        gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 1, delay: 0.9 });
-        gsap.to("#hero-stats", { opacity: 1, y: 0, duration: 1, delay: 1.1 });
-        gsap.to("#scroll-indicator", { opacity: 1, duration: 1, delay: 1.3 });
+        gsap.to("#hero-trust", { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
+        gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 1, delay: 1.1 });
+        gsap.to("#hero-urgency", { opacity: 1, y: 0, duration: 0.8, delay: 1.3 });
+        gsap.to("#hero-stats", { opacity: 1, y: 0, duration: 1, delay: 1.5 });
+        gsap.to("#scroll-indicator", { opacity: 1, duration: 1, delay: 1.7 });
         
         // Feature cards animation
         gsap.utils.toArray(".feature-card").forEach((card, i) => {
