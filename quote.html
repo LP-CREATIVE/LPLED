@@ -364,24 +364,48 @@
     
     <script>
         // Form submission handler
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        document.getElementById('quoteForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Collect form data
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Submitting... <span class="ml-2">⏳</span>';
+            submitBtn.disabled = true;
+
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
-            
-            // In a real application, you would send this data to your server
-            console.log('Quote form data:', data);
-            
-            // Show success modal
-            document.getElementById('successModal').classList.remove('hidden');
-            
-            // Reset form
-            this.reset();
-            
-            // Optionally, send data to your backend here
-            // fetch('/api/quote', { method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'} })
+
+            try {
+                const res = await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    this.reset();
+                } else {
+                    submitBtn.innerHTML = 'Error — Please try again <span class="ml-2">→</span>';
+                    submitBtn.classList.add('bg-red-600');
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.classList.remove('bg-red-600');
+                    }, 3000);
+                }
+            } catch {
+                submitBtn.innerHTML = 'Error — Please try again <span class="ml-2">→</span>';
+                submitBtn.classList.add('bg-red-600');
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.classList.remove('bg-red-600');
+                }, 3000);
+            }
+
+            submitBtn.disabled = false;
+            if (!submitBtn.classList.contains('bg-red-600')) {
+                submitBtn.innerHTML = originalText;
+            }
         });
         
         // Close modal on background click
