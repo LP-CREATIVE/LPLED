@@ -550,14 +550,14 @@
                                         <input type="radio" name="screenType" value="indoor" checked onchange="updatePricing()" class="sr-only peer">
                                         <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-purple-500 peer-checked:bg-purple-500/20 transition-all">
                                             <div class="text-lg font-semibold mb-1">Indoor</div>
-                                            <div class="text-sm text-gray-400">$180/sq ft</div>
+                                            <div class="text-sm text-gray-400">$300/sq ft</div>
                                         </div>
                                     </label>
                                     <label class="relative">
                                         <input type="radio" name="screenType" value="outdoor" onchange="updatePricing()" class="sr-only peer">
                                         <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-purple-500 peer-checked:bg-purple-500/20 transition-all">
                                             <div class="text-lg font-semibold mb-1">Outdoor</div>
-                                            <div class="text-sm text-gray-400">$240/sq ft</div>
+                                            <div class="text-sm text-gray-400">$300/sq ft</div>
                                         </div>
                                     </label>
                                 </div>
@@ -598,7 +598,7 @@
                             <div class="text-sm text-gray-400">Display Details</div>
                             <div class="text-lg mb-2">
                                 <span id="total-sqft" class="font-bold">24</span> sq ft × 
-                                <span id="price-per-sqft" class="font-bold">$180</span>/sq ft × 
+                                <span id="price-per-sqft" class="font-bold">$300</span>/sq ft × 
                                 <span id="num-displays-show" class="font-bold">1</span> display(s)
                             </div>
                             <div class="text-sm text-gray-400">Total Investment</div>
@@ -1108,7 +1108,7 @@
         function updatePricing() {
             // Get screen type
             const screenType = document.querySelector('input[name="screenType"]:checked').value;
-            const pricePerSqFt = screenType === 'indoor' ? 180 : 240;
+            const pricePerSqFt = 300;
             
             // Get dimensions
             const width = parseFloat(document.getElementById('screenWidth').value);
@@ -1230,7 +1230,7 @@
             // Simulate bot response
             setTimeout(() => {
                 const responses = {
-                    'pricing': 'Our pricing depends on display size and type. Indoor displays start at $180/sq ft and outdoor at $240/sq ft. Use our pricing calculator above or request a free quote!',
+                    'pricing': 'Our displays are $300/sq ft for both indoor and outdoor. Use our pricing calculator above or request a free quote!',
                     'demo': 'We would love to show you what we can do! Head to our quote page and we will set up a consultation.',
                     'features': 'LPLED offers stadium-grade LED displays with professional installation, remote management, weather-resistant IP65 rated panels, custom content design, and 24/7 support.',
                     'support': 'We offer 24/7 US-based support via phone and email. Reach us at lucas@lpcreative.studio or call anytime!',
