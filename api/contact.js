@@ -11,6 +11,11 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Email is required' });
   }
 
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error('Missing SMTP_USER or SMTP_PASS environment variables');
+    return res.status(500).json({ error: 'Email not configured', detail: 'Missing SMTP credentials' });
+  }
+
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     port: parseInt(process.env.SMTP_PORT || '587'),
@@ -44,7 +49,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Email send error:', error);
-    return res.status(500).json({ error: 'Failed to process request' });
+    console.error('Email send error:', error.message, error.code);
+    return res.status(500).json({ error: 'Failed to send', detail: error.message });
   }
 };
