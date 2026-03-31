@@ -1,6 +1,6 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -80,4 +80,4 @@ export default async function handler(req, res) {
     console.error('Email send error:', error);
     return res.status(500).json({ error: 'Failed to send quote request' });
   }
-}
+};
