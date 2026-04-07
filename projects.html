@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects | LPLED by LPCREATIVE, LLC — LED Scoreboards & Displays</title>
+    <meta name="description" content="Browse our past LED scoreboard and display installations for football, basketball, baseball, softball, and soccer programs across Tennessee and nationwide.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://www.lpcreative.studio/projects">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Our Projects | LPLED — LED Scoreboards & Displays">
+    <meta property="og:description" content="Browse our past LED scoreboard and display installations for football, basketball, baseball, softball, and soccer programs.">
+    <meta property="og:url" content="https://www.lpcreative.studio/projects">
+    <meta property="og:site_name" content="LPLED by LPCREATIVE, LLC">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Our Projects | LPLED — LED Scoreboards & Displays">
+    <meta name="twitter:description" content="Browse our past LED scoreboard and display installations for football, basketball, baseball, softball, and soccer.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glowing button */
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow-button:hover::before {
+            opacity: 1;
+        }
+
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Glass morphism cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sport filter buttons */
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Project card image placeholder */
+        .project-image {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        /* Sport color accents */
+        .sport-football { border-top: 3px solid #8B4513; }
+        .sport-basketball { border-top: 3px solid #FF6B00; }
+        .sport-baseball { border-top: 3px solid #DC2626; }
+        .sport-softball { border-top: 3px solid #FACC15; }
+        .sport-soccer { border-top: 3px solid #22C55E; }
+
+        .sport-tag-football { background: rgba(139, 69, 19, 0.3); color: #D2A679; }
+        .sport-tag-basketball { background: rgba(255, 107, 0, 0.3); color: #FFB370; }
+        .sport-tag-baseball { background: rgba(220, 38, 38, 0.3); color: #FCA5A5; }
+        .sport-tag-softball { background: rgba(250, 204, 21, 0.3); color: #FDE68A; }
+        .sport-tag-soccer { background: rgba(34, 197, 94, 0.3); color: #86EFAC; }
+
+        /* Pulse animation for CTA */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Card entrance animation */
+        .project-card {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">LPLED by LPCREATIVE, LLC</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-purple-400 transition-colors">Homepage</a>
+                    <a href="projects.html" class="text-purple-400 transition-colors">Projects</a>
+                    <a href="index.html#pricing" class="hover:text-purple-400 transition-colors">Pricing</a>
+                    <a href="index.html#contact" class="hover:text-purple-400 transition-colors">Contact</a>
+                </div>
+                <a href="quote.html" class="glow-button px-6 py-2 rounded-full text-white font-semibold inline-block">
+                    Free Quote
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                Our <span class="gradient-text">Projects</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                From Friday night football to championship baseball — see how our LED scoreboards and displays are transforming the game day experience across the country.
+            </p>
+
+            <!-- Sport Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="sport-filters">
+                <button class="filter-btn active px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="all" onclick="filterProjects('all')">
+                    All Sports
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="football" onclick="filterProjects('football')">
+                    Football
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="basketball" onclick="filterProjects('basketball')">
+                    Basketball
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="baseball" onclick="filterProjects('baseball')">
+                    Baseball
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="softball" onclick="filterProjects('softball')">
+                    Softball
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full font-semibold text-sm" data-filter="soccer" onclick="filterProjects('soccer')">
+                    Soccer
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+                <!-- FOOTBALL PROJECTS -->
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-football" data-sport="football">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-football text-xs font-semibold px-3 py-1 rounded-full">Football</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Bearden High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Full stadium LED video board installation with real-time scoreboard, instant replay capability, and sponsor integration. 20' x 10' outdoor display.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Knoxville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-football" data-sport="football">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-football text-xs font-semibold px-3 py-1 rounded-full">Football</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">DeKalb County High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Stadium scoreboard upgrade with LED video display, game clock integration, and custom team branding. Weather-resistant IP65-rated outdoor unit.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Smithville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BASKETBALL PROJECTS -->
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-basketball" data-sport="basketball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-basketball text-xs font-semibold px-3 py-1 rounded-full">Basketball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Bearden High School Gymnasium</h3>
+                        <p class="text-gray-400 text-sm mb-4">Indoor gymnasium LED video board with shot clock integration, player stats display, and dynamic sponsor rotation. Crystal-clear indoor resolution.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Knoxville, TN</span>
+                            <span>Indoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-basketball" data-sport="basketball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-basketball text-xs font-semibold px-3 py-1 rounded-full">Basketball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Riverdale High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Dual-display gymnasium setup with center-court video board and end-zone stats display. Full game production capability with live camera feeds.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Murfreesboro, TN</span>
+                            <span>Indoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BASEBALL PROJECTS -->
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-baseball" data-sport="baseball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-baseball text-xs font-semibold px-3 py-1 rounded-full">Baseball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Riverdale High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Outfield LED scoreboard with full lineup display, pitch count, inning-by-inning scoring, and batting order. Integrated sponsor advertising panels.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Murfreesboro, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-baseball" data-sport="baseball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-baseball text-xs font-semibold px-3 py-1 rounded-full">Baseball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">DeKalb County High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Custom baseball field LED video board with live scoreboard, player introductions, and walk-up graphics. Full-color outdoor display with sun-readable brightness.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Smithville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOFTBALL PROJECTS -->
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-softball" data-sport="softball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-softball text-xs font-semibold px-3 py-1 rounded-full">Softball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Bearden High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Softball field LED scoreboard with full game stats, lineup rotation, and sponsor integration. Bright outdoor display visible in all lighting conditions.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Knoxville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-softball" data-sport="softball">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-softball text-xs font-semibold px-3 py-1 rounded-full">Softball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Riverdale High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Complete softball field LED display package with scoreboard, player stats, pitch tracking, and revenue-generating sponsor ad rotations.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Murfreesboro, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOCCER PROJECTS -->
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-soccer" data-sport="soccer">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-soccer text-xs font-semibold px-3 py-1 rounded-full">Soccer</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Bearden High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Soccer field LED scoreboard with game clock, score, half tracking, and player card displays. Durable outdoor installation with wireless controller.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Knoxville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden project-card sport-soccer" data-sport="soccer">
+                    <div class="project-image">
+                        <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="sport-tag-soccer text-xs font-semibold px-3 py-1 rounded-full">Soccer</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">DeKalb County High School</h3>
+                        <p class="text-gray-400 text-sm mb-4">Multi-sport field LED display serving soccer and football programs. Score, clock, and custom graphics with easy-to-use tablet controller.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Smithville, TN</span>
+                            <span>Outdoor LED</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div id="no-results" class="hidden text-center py-16">
+                <p class="text-xl text-gray-400">No projects found for this category yet. Check back soon!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gradient-to-b from-transparent to-purple-900/20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-6">
+                <span class="gradient-text">Ready for Your Own Installation?</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-8">
+                Join these schools and programs with a custom LED scoreboard or display. Free consultation and quote included.
+            </p>
+            <a href="quote.html" class="glow-button px-10 py-5 rounded-full text-xl font-bold text-white pulse inline-block">
+                Get Your Free Quote <span class="ml-2">&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">LPLED by LPCREATIVE, LLC</div>
+                    <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#pricing" class="hover:text-white transition-colors">Pricing Calculator</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Solutions</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="projects.html" class="hover:text-white transition-colors">Our Projects</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Scoreboards</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Digital Signage</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Video Walls</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Request a Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 LPLED by LPCREATIVE, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter projects by sport
+        function filterProjects(sport) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === sport);
+            });
+
+            // Filter cards
+            cards.forEach(card => {
+                const cardSport = card.dataset.sport;
+                const show = sport === 'all' || cardSport === sport;
+                card.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+
+            noResults.classList.toggle('hidden', visibleCount > 0);
+        }
+
+        // Animate cards on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Check URL hash for sport filter
+            const hash = window.location.hash.replace('#', '');
+            if (['football', 'basketball', 'baseball', 'softball', 'soccer'].includes(hash)) {
+                filterProjects(hash);
+            }
+        });
+    </script>
+</body>
+</html>
