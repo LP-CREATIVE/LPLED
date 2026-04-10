@@ -97,6 +97,21 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
         
         body {
             overflow-x: hidden;
@@ -521,15 +536,20 @@
         </nav>
         
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center relative px-6">
-            <!-- Video Background -->
-            <video autoplay muted loop playsinline preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
-                <source src="backgroundvideo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            
+        <section class="flex items-center justify-center relative px-6 mt-20 pb-36">
+            <!-- Slideshow Background -->
+            <div id="hero-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+                <img src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
+                <img src="images/projects/keller.png" class="hero-slide" alt="" style="object-position: center 45%">
+                <img src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
+                <img src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+                <img src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%; transform: scale(0.85)">
+                <img src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+                <img src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            </div>
+
             <!-- Dark overlay for better text readability -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 0;"></div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 0;"></div>
             
             <div class="max-w-6xl mx-auto text-center relative z-10">
                 
@@ -804,79 +824,6 @@
         
         
         
-        <!-- Competitor Comparison -->
-        <section class="py-20 px-6">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-5xl font-bold text-center mb-16">
-                    <span class="gradient-text">Why Choose LPLED by LPCREATIVE, LLC?</span>
-                </h2>
-                
-                <div class="comparison-table glass-card p-6 rounded-2xl">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="text-left">Feature</th>
-                                <th class="text-center">
-                                    <div class="gradient-text font-bold">LPLED by LPCREATIVE, LLC</div>
-                                </th>
-                                <th class="text-center text-gray-400">Competitor A</th>
-                                <th class="text-center text-gray-400">Competitor B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Professional Installation</td>
-                                <td class="text-center text-green-400">✓ Included</td>
-                                <td class="text-center text-gray-600">NOT INCLUDED</td>
-                                <td class="text-center text-gray-600">NOT INCLUDED</td>
-                            </tr>
-                            <tr>
-                                <td>24/7 US-Based Support</td>
-                                <td class="text-center text-green-400">✓</td>
-                                <td class="text-center text-gray-600">✗</td>
-                                <td class="text-center text-gray-600">Offshore</td>
-                            </tr>
-                            <tr>
-                                <td>No Setup Fees</td>
-                                <td class="text-center text-green-400">✓</td>
-                                <td class="text-center text-gray-600">$999</td>
-                                <td class="text-center text-gray-600">$499</td>
-                            </tr>
-                            <tr>
-                                <td>Custom Design Services</td>
-                                <td class="text-center text-green-400">✓ Included</td>
-                                <td class="text-center text-gray-600">+$150/hr</td>
-                                <td class="text-center text-gray-600">✗</td>
-                            </tr>
-                            <tr>
-                                <td>Weather-Resistant Displays</td>
-                                <td class="text-center text-green-400">✓ IP65 Rated</td>
-                                <td class="text-center text-green-400">✓</td>
-                                <td class="text-center text-gray-600">Indoor Only</td>
-                            </tr>
-                            <tr>
-                                <td>Remote Management</td>
-                                <td class="text-center text-green-400">✓ Mobile App</td>
-                                <td class="text-center text-gray-600">Desktop Only</td>
-                                <td class="text-center text-gray-600">✗</td>
-                            </tr>
-                            <tr>
-                                <td>Energy Efficiency</td>
-                                <td class="text-center text-green-400">✓ 70% Less Power</td>
-                                <td class="text-center text-gray-600">Standard</td>
-                                <td class="text-center text-gray-600">Standard</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="text-center mt-8">
-                    <a href="quote.html" class="glow-button px-8 py-4 rounded-full text-lg font-semibold pulse inline-block">
-                        Get Your Free Quote
-                    </a>
-                </div>
-            </div>
-        </section>
         
         <!-- CTA Section -->
         <section class="py-20 px-6">
@@ -1103,6 +1050,17 @@
         });
         
         
+        // Hero slideshow
+        (function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 4000);
+        })();
+
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         
