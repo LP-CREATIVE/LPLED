@@ -39,1017 +39,571 @@
         "addressCountry": "US"
       },
       "areaServed": [
-        {
-          "@type": "State",
-          "name": "Tennessee"
-        },
-        {
-          "@type": "Country",
-          "name": "United States"
-        }
+        { "@type": "State", "name": "Tennessee" },
+        { "@type": "Country", "name": "United States" }
       ],
       "serviceType": ["LED Displays", "LED Scoreboards", "Digital Signage", "Video Walls", "Outdoor LED Signs"],
-      "priceRange": "$$$$",
-      "knowsAbout": ["LED technology", "Digital signage", "Sports scoreboards", "Outdoor displays", "Indoor displays"],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "LED Display Solutions",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Indoor LED Displays",
-              "description": "High-resolution indoor LED displays for churches, retail, corporate, and event venues"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Outdoor LED Displays",
-              "description": "Weather-resistant IP65-rated outdoor LED displays and scoreboards for stadiums and businesses"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "LED Scoreboards",
-              "description": "Stadium-grade LED scoreboards for high schools, colleges, and sports venues"
-            }
-          }
-        ]
-      }
+      "priceRange": "$$$$"
     }
     </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { DEFAULT: '#059669', dark: '#065f46', light: '#34d399' },
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
         }
 
+        /* Hero slideshow */
         .hero-slide {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
+        .hero-slide.active { opacity: 1; }
 
-        .hero-slide.active {
-            opacity: 1;
-        }
-        
-        body {
-            overflow-x: hidden;
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        /* Custom gradient text */
+        /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 8s ease infinite;
         }
-        
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        /* CTA button */
+        .cta-button {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: #1f2937;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
         }
-        
-        /* Glowing button */
-        .glow-button {
-            position: relative;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            overflow: hidden;
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.6);
+        }
+
+        /* Secondary button */
+        .cta-outline {
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
             transition: all 0.3s ease;
         }
-        
-        .glow-button::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .cta-outline:hover {
+            background: #f59e0b;
+            color: #1f2937;
         }
-        
-        .glow-button:hover::before {
-            opacity: 1;
+
+        /* Product cards */
+        .product-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid transparent;
         }
-        
-        .glow-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(217, 119, 6, 0.15);
+            border-left-color: #f59e0b;
         }
-        
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+        /* Feature icon circle */
+        .feature-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
         }
-        
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+
+        /* Turnkey item */
+        .turnkey-item {
+            transition: all 0.3s ease;
         }
-        
-        /* Particle canvas */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
+        .turnkey-item:hover {
+            transform: translateY(-4px);
         }
-        
-        /* Glass morphism cards */
+
+        /* Dark section card */
+        .dark-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .dark-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+
+        /* Glass card for calculator */
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+        /* Scroll fade-in */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        /* Neon text effect */
-        .neon-text {
-            text-shadow: 0 0 10px rgba(102, 126, 234, 0.8),
-                         0 0 20px rgba(102, 126, 234, 0.6),
-                         0 0 30px rgba(102, 126, 234, 0.4),
-                         0 0 40px rgba(102, 126, 234, 0.2);
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        /* 3D transform for cards */
-        .transform-3d {
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        /* Pulse animation for CTA */
+
+        /* Pulse animation */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(217, 119, 6, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
         }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Chatbot styles */
-        #chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        #chatbot-window {
-            width: 350px;
-            height: 500px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-        
-        #chatbot-window.active {
-            display: flex;
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        #chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .chat-message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            word-wrap: break-word;
-        }
-        
-        .bot-message {
-            background: rgba(102, 126, 234, 0.2);
-            align-self: flex-start;
-        }
-        
-        .user-message {
-            background: rgba(147, 51, 234, 0.2);
-            align-self: flex-end;
-        }
-        
-        /* Comparison table */
-        .comparison-table {
-            overflow-x: auto;
-        }
-        
-        .comparison-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .comparison-table th,
-        .comparison-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .comparison-table th {
-            background: rgba(102, 126, 234, 0.1);
-            font-weight: bold;
-        }
-        
-        /* Exit intent popup */
-        #exit-popup {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-        
-        #exit-popup.active {
-            display: flex;
-        }
-        
-        /* Progress bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(102, 126, 234, 0.2);
-            z-index: 100;
-        }
-        
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        /* LED Scoreboard Styles */
-        .led-scoreboard-container {
-            max-width: 600px;
-            perspective: 1000px;
-        }
-        
-        .led-scoreboard {
-            background: #000;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 
-                0 0 50px rgba(0, 0, 0, 0.8),
-                inset 0 0 20px rgba(255, 255, 255, 0.05);
-            transform: rotateX(5deg);
-            transition: transform 0.3s ease;
-        }
-        
-        .led-scoreboard:hover {
-            transform: rotateX(0deg) scale(1.05);
-        }
-        
-        .led-border {
-            background: #1a1a1a;
-            padding: 15px;
-            border-radius: 8px;
-            border: 3px solid #333;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .led-screen {
-            background: #000;
-            padding: 30px;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .led-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
-                );
-            pointer-events: none;
-        }
-        
-        .led-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .led-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .led-label {
-            font-family: 'Courier New', monospace;
-            color: #ff6b00;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px #ff6b00,
-                0 0 20px #ff6b00,
-                0 0 30px #ff6b00,
-                0 0 40px #ff6b00;
-            letter-spacing: 3px;
-        }
-        
-        .led-score {
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            font-size: 48px;
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px #00ff00,
-                0 0 20px #00ff00,
-                0 0 30px #00ff00,
-                0 0 40px #00ff00;
-            letter-spacing: 5px;
-            animation: led-flicker 2s infinite alternate;
-        }
-        
-        .led-time-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #333;
-        }
-        
-        .led-time {
-            font-family: 'Courier New', monospace;
-            color: #ffff00;
-            font-size: 36px;
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px #ffff00,
-                0 0 20px #ffff00,
-                0 0 30px #ffff00;
-            letter-spacing: 4px;
-        }
-        
-        .led-period {
-            font-family: 'Courier New', monospace;
-            color: #ff0000;
-            font-size: 28px;
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px #ff0000,
-                0 0 20px #ff0000,
-                0 0 30px #ff0000;
-            letter-spacing: 3px;
-            animation: led-pulse 1.5s infinite;
-        }
-        
-        @keyframes led-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
-        }
-        
-        @keyframes led-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-            .led-scoreboard {
-                padding: 15px;
-            }
-            
-            .led-screen {
-                padding: 20px;
-            }
-            
-            .led-label {
-                font-size: 18px;
-            }
-            
-            .led-score {
-                font-size: 36px;
-            }
-            
-            .led-time {
-                font-size: 28px;
-            }
-            
-            .led-period {
-                font-size: 22px;
-            }
+        .pulse { animation: pulse 2s infinite; }
+
+        /* Slider styling */
+        input[type="range"] {
+            accent-color: #f59e0b;
         }
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
-    <div class="progress-bar">
-        <div class="progress-bar-fill" id="progress-bar"></div>
-    </div>
-    
-    <!-- Particle Background -->
-    <canvas id="particle-canvas"></canvas>
-    
-    <!-- Main Content -->
-    <div class="relative z-10">
-        <!-- Navigation -->
-        <nav class="fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <div class="text-2xl font-bold gradient-text">LPLED by LPCREATIVE, LLC</div>
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#top" class="hover:text-purple-400 transition-colors" onclick="window.scrollTo(0,0); return false;">Homepage</a>
-                        <a href="projects.html" class="hover:text-purple-400 transition-colors">Projects</a>
-                        <a href="#pricing" class="hover:text-purple-400 transition-colors">Pricing</a>
-                        <a href="#contact" class="hover:text-purple-400 transition-colors">Contact</a>
-                    </div>
-                    <a href="quote.html" class="glow-button px-6 py-2 rounded-full text-white font-semibold inline-block">
-                        Free Quote
-                    </a>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- Hero Section -->
-        <section class="flex items-center justify-center relative px-6 mt-20 pb-36">
-            <!-- Slideshow Background -->
-            <div id="hero-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-                <img src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
-                <img src="images/projects/keller.png" class="hero-slide" alt="" style="object-position: center 45%">
-                <img src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
-                <img src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-                <img src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%; transform: scale(0.85)">
-                <img src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-                <img src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            </div>
 
-            <!-- Dark overlay for better text readability -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 0;"></div>
-            
-            <div class="max-w-6xl mx-auto text-center relative z-10">
-                
-                <!-- Hero Badge -->
-                <div class="inline-block mb-6" id="hero-badge">
-                    <div class="bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-500/30 px-6 py-2 rounded-full">
-                        <span class="text-sm font-medium text-purple-300">🚀 #1 LED Display Solutions Provider</span>
-                    </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-[#1f2937]/95 backdrop-blur-md border-b border-gray-700 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-1">
+            <div class="flex justify-between items-center">
+                <img src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16">
+                <div class="hidden md:flex space-x-8 text-white/90 font-medium">
+                    <a href="#top" class="hover:text-white transition-colors" onclick="window.scrollTo(0,0); return false;">Home</a>
+                    <a href="#products" class="hover:text-white transition-colors">Products</a>
+                    <a href="projects.html" class="hover:text-white transition-colors">Projects</a>
+                    <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
                 </div>
-                
-                <h1 class="text-6xl md:text-8xl font-bold mb-6" id="hero-title">
-                    <span class="block text-white mb-2">Bring Your Vision</span>
-                    <span class="gradient-text">TO LIFE</span>
-                    <span class="block text-3xl md:text-5xl mt-4 text-white">With Stadium-Grade LED Displays</span>
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto" id="hero-subtitle">
-                    From high school scoreboards to professional stadiums across Tennessee and beyond,
-                    we deliver crystal-clear, weather-resistant LED displays that command attention and drive engagement.
-                </p>
-                
-                <!-- Trust Indicators -->
-                <div class="flex flex-wrap justify-center gap-6 mb-10" id="hero-trust">
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Professional Installation</span>
+                <a href="quote.html" class="bg-amber-500 text-gray-900 px-6 py-2.5 rounded-full font-bold text-sm inline-block hover:bg-amber-400 transition-colors">
+                    Free Quote
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center mt-[72px] overflow-hidden" style="min-height: 75vh;">
+        <div id="hero-slideshow" class="absolute inset-0 z-0">
+            <img src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
+            <img src="images/projects/keller.png" class="hero-slide" alt="" style="object-position: center 45%">
+            <img src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
+            <img src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%; transform: scale(0.85)">
+            <img src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-[#1f2937]/50 to-black/70 z-[1]"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-6 py-20">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                Bring Your Vision <br><span class="gradient-text">To Life</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                High-quality LED scoreboards and displays for schools, stadiums, churches, and businesses — with professional installation and top-tier service.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <a href="quote.html" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
+                    Get Your Free Quote &rarr;
+                </a>
+                <a href="#products" class="cta-outline px-10 py-4 rounded-full text-lg font-bold inline-block border-white text-white hover:bg-white hover:text-black">
+                    View Products
+                </a>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 text-gray-300 text-sm">
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Professional Installation</span>
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Multi-Year Warranty</span>
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 24/7 Support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 px-6 bg-white text-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Our Products</h2>
+            <p class="text-center text-gray-400 mb-14 text-lg max-w-2xl mx-auto">From outdoor stadium scoreboards to indoor video walls, we have the perfect LED solution for your needs.</p>
+
+            <div class="grid md:grid-cols-3 gap-8 fade-up">
+                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                    <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
+                        <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
                     </div>
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Multi-Year Warranty</span>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">LED Scoreboards</h3>
+                        <p class="text-gray-500 text-sm">Stadium-grade scoreboards for football, basketball, baseball, softball, and soccer.</p>
                     </div>
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>24/7 Support</span>
+                </a>
+
+                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                    <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
+                        <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
                     </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Indoor Displays</h3>
+                        <p class="text-gray-500 text-sm">High-resolution indoor LED walls for gyms, churches, retail, and corporate venues.</p>
+                    </div>
+                </a>
+
+                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                    <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
+                        <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Outdoor Displays</h3>
+                        <p class="text-gray-500 text-sm">Weather-resistant IP65-rated outdoor LED signs and displays for any environment.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-20 px-6 bg-gradient-to-br from-[#1f2937] via-[#111827] to-[#1f2937] text-white">
+        <div class="max-w-5xl mx-auto text-center fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="gradient-text">High Quality. Competitive Pricing. Top Tier Service.</span>
+            </h2>
+            <p class="text-lg text-white/80 max-w-3xl mx-auto mb-16">
+                It's game on with our high-quality LED products that won't bench your wallet, backed by all-star service to keep you winning both on and off the field.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="fade-up">
+                    <div class="feature-icon">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Competitive Prices</h3>
+                    <p class="text-white/70">Premium LED technology at prices that work for schools, churches, and businesses of all sizes.</p>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" id="hero-cta">
-                    <a href="quote.html" class="glow-button px-10 py-5 rounded-full text-xl font-bold text-white pulse transform hover:scale-105 transition-all duration-300 inline-block">
-                        Get Your Free Quote
-                        <span class="ml-2">→</span>
-                    </a>
+
+                <div class="fade-up">
+                    <div class="feature-icon">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Exceptional Quality</h3>
+                    <p class="text-white/70">Sun-readable, weather-resistant displays built to last with vibrant color and crystal-clear resolution.</p>
                 </div>
-                
-                <!-- Urgency Message -->
-                <div class="mt-8 text-center" id="hero-urgency">
-                    <p class="text-sm text-yellow-400 font-medium">
-                        ⚡ Free Consultation & Custom Quote — No Obligation
-                    </p>
-                </div>
-                <div class="mt-12 flex justify-center space-x-8 text-sm" id="hero-stats">
-                    <div>
-                        <div class="text-3xl font-bold gradient-text">100%</div>
-                        <div class="text-gray-400">Customer Satisfaction</div>
+
+                <div class="fade-up">
+                    <div class="feature-icon">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
                     </div>
-                    <div>
-                        <div class="text-3xl font-bold gradient-text">2-3x+</div>
-                        <div class="text-gray-400">Sponsorship Revenue</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-bold gradient-text">24/7</div>
-                        <div class="text-gray-400">Support</div>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3">Top Tier Service</h3>
+                    <p class="text-white/70">24/7 US-based support, professional installation, and ongoing maintenance to keep you running.</p>
                 </div>
             </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" id="scroll-indicator">
-                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-                    <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+        </div>
+    </section>
+
+    <!-- Turnkey Solutions -->
+    <section class="py-20 px-6 bg-white text-gray-900">
+        <div class="max-w-6xl mx-auto text-center fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Turnkey Solutions</h2>
+            <p class="text-gray-400 text-lg mb-14">Everything you need, handled from start to finish.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <div class="turnkey-item p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <div class="w-14 h-14 bg-amber-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                    </div>
+                    <h4 class="font-bold text-lg">Sales</h4>
+                </div>
+
+                <div class="turnkey-item p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <div class="w-14 h-14 bg-amber-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3 21V3"/></svg>
+                    </div>
+                    <h4 class="font-bold text-lg">Installation</h4>
+                </div>
+
+                <div class="turnkey-item p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <div class="w-14 h-14 bg-amber-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+                    </div>
+                    <h4 class="font-bold text-lg">Training</h4>
+                </div>
+
+                <div class="turnkey-item p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <div class="w-14 h-14 bg-amber-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg>
+                    </div>
+                    <h4 class="font-bold text-lg">Graphics</h4>
+                </div>
+
+                <div class="turnkey-item p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <div class="w-14 h-14 bg-amber-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3 21V3"/></svg>
+                    </div>
+                    <h4 class="font-bold text-lg">Service</h4>
                 </div>
             </div>
-        </section>
-        
-        <!-- Pricing Calculator -->
-        <section id="pricing" class="py-20 px-6">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-5xl font-bold text-center mb-16">
-                    <span class="gradient-text">Calculate Your Investment</span>
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="glass-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-6">Display Pricing Calculator</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-sm text-gray-400 mb-2">Screen Type</label>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <label class="relative">
-                                        <input type="radio" name="screenType" value="indoor" checked onchange="updatePricing()" class="sr-only peer">
-                                        <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-purple-500 peer-checked:bg-purple-500/20 transition-all">
-                                            <div class="text-lg font-semibold mb-1">Indoor</div>
-                                            <div class="text-sm text-gray-400">$300/sq ft</div>
-                                        </div>
-                                    </label>
-                                    <label class="relative">
-                                        <input type="radio" name="screenType" value="outdoor" onchange="updatePricing()" class="sr-only peer">
-                                        <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-purple-500 peer-checked:bg-purple-500/20 transition-all">
-                                            <div class="text-lg font-semibold mb-1">Outdoor</div>
-                                            <div class="text-sm text-gray-400">$300/sq ft</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm text-gray-400 mb-2">Screen Width (feet)</label>
-                                <input type="range" id="screenWidth" min="2" max="100" value="20" step="0.5" class="w-full" oninput="updatePricing()">
-                                <div class="flex justify-between text-sm">
-                                    <span>2ft</span>
-                                    <span id="width-value" class="font-bold text-purple-400">20ft</span>
-                                    <span>100ft</span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm text-gray-400 mb-2">Screen Height (feet)</label>
-                                <input type="range" id="screenHeight" min="1" max="50" value="10" step="0.5" class="w-full" oninput="updatePricing()">
-                                <div class="flex justify-between text-sm">
-                                    <span>1ft</span>
-                                    <span id="height-value" class="font-bold text-purple-400">10ft</span>
-                                    <span>50ft</span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm text-gray-400 mb-2">Number of Displays</label>
-                                <input type="range" id="numDisplays" min="1" max="50" value="1" class="w-full" oninput="updatePricing()">
-                                <div class="flex justify-between text-sm">
-                                    <span>1</span>
-                                    <span id="displays-value" class="font-bold text-purple-400">1</span>
-                                    <span>50</span>
-                                </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section id="pricing" class="py-20 px-6 bg-[#1f2937] text-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Calculate Your Investment</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6">Display Pricing Calculator</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Screen Type</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="relative">
+                                    <input type="radio" name="screenType" value="indoor" checked onchange="updatePricing()" class="sr-only peer">
+                                    <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
+                                        <div class="text-lg font-semibold mb-1">Indoor</div>
+                                        <div class="text-sm text-gray-400">$300/sq ft</div>
+                                    </div>
+                                </label>
+                                <label class="relative">
+                                    <input type="radio" name="screenType" value="outdoor" onchange="updatePricing()" class="sr-only peer">
+                                    <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
+                                        <div class="text-lg font-semibold mb-1">Outdoor</div>
+                                        <div class="text-sm text-gray-400">$300/sq ft</div>
+                                    </div>
+                                </label>
                             </div>
                         </div>
-                        
-                        <div class="mt-8 p-6 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl">
-                            <div class="text-sm text-gray-400">Display Details</div>
-                            <div class="text-lg mb-2">
-                                <span id="total-sqft" class="font-bold">24</span> sq ft × 
-                                <span id="price-per-sqft" class="font-bold">$300</span>/sq ft × 
-                                <span id="num-displays-show" class="font-bold">1</span> display(s)
-                            </div>
-                            <div class="text-sm text-gray-400">Total Investment</div>
-                            <div class="text-4xl font-bold gradient-text" id="total-price-calc">$4,320</div>
-                            <div class="text-sm text-green-400 mt-2">Financing available from $99/month</div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-6">Your Investment Details</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="p-4 bg-white/5 rounded-lg">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-400">Display Type</span>
-                                    <span class="font-bold" id="display-type-summary">Indoor</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-400">Display Size</span>
-                                    <span class="font-bold"><span id="size-summary">6' × 4'</span></span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-400">Square Footage</span>
-                                    <span class="font-bold"><span id="sqft-summary">24</span> sq ft</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-400">Number of Displays</span>
-                                    <span class="font-bold" id="displays-summary">1</span>
-                                </div>
-                            </div>
-                            
-                            <div class="p-6 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl">
-                                <div class="text-sm text-gray-400 mb-2">Estimated Investment</div>
-                                <div class="text-4xl font-bold gradient-text mb-4" id="total-price">$4,320</div>
-                                <div class="text-sm text-green-400">Financing available from $99/month</div>
-                            </div>
-                            
-                            <div class="space-y-3 text-sm">
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-2">✓</span>
-                                    <span>Professional installation included</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-2">✓</span>
-                                    <span>Multi-year warranty</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-2">✓</span>
-                                    <span>24/7 technical support</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-2">✓</span>
-                                    <span>Free software updates</span>
-                                </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Screen Width (feet)</label>
+                            <input type="range" id="screenWidth" min="2" max="100" value="20" step="0.5" class="w-full" oninput="updatePricing()">
+                            <div class="flex justify-between text-sm">
+                                <span>2ft</span>
+                                <span id="width-value" class="font-bold text-amber-400">20ft</span>
+                                <span>100ft</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-8">
-                    <a href="quote.html" class="glow-button px-8 py-4 rounded-full text-lg font-semibold pulse inline-block">
-                        Get Free Quote
-                    </a>
-                    <p class="text-sm text-gray-400 mt-3">Talk to our experts for volume discounts and special pricing</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Social Proof - Moved Up -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent to-purple-900/20">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl font-bold mb-4">
-                        <span class="gradient-text">Trusted By Industry Leaders</span>
-                    </h2>
-                    <p class="text-xl text-gray-400">Schools, churches, and businesses across the country trust LPLED for their display needs</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass-card p-6 rounded-xl">
-                        <div class="flex mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Screen Height (feet)</label>
+                            <input type="range" id="screenHeight" min="1" max="50" value="10" step="0.5" class="w-full" oninput="updatePricing()">
+                            <div class="flex justify-between text-sm">
+                                <span>1ft</span>
+                                <span id="height-value" class="font-bold text-amber-400">10ft</span>
+                                <span>50ft</span>
+                            </div>
                         </div>
-                        <p class="text-gray-300 mb-4">"Our new scoreboard has completely transformed the game day experience. The display is crystal clear even in direct sunlight, and the crowd loves it."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mr-3"></div>
-                            <div>
-                                <div class="font-semibold">High School Athletic Director</div>
-                                <div class="text-sm text-gray-400">Middle Tennessee</div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Number of Displays</label>
+                            <input type="range" id="numDisplays" min="1" max="50" value="1" class="w-full" oninput="updatePricing()">
+                            <div class="flex justify-between text-sm">
+                                <span>1</span>
+                                <span id="displays-value" class="font-bold text-amber-400">1</span>
+                                <span>50</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl">
-                        <div class="flex mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
+                    <div class="mt-8 p-6 bg-gradient-to-r from-amber-600/20 to-amber-800/20 rounded-xl">
+                        <div class="text-sm text-gray-400">Display Details</div>
+                        <div class="text-lg mb-2">
+                            <span id="total-sqft" class="font-bold">24</span> sq ft ×
+                            <span id="price-per-sqft" class="font-bold">$300</span>/sq ft ×
+                            <span id="num-displays-show" class="font-bold">1</span> display(s)
                         </div>
-                        <p class="text-gray-300 mb-4">"LPLED handled everything from design to installation. Professional, on time, and the quality of the display exceeded our expectations."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full mr-3"></div>
-                            <div>
-                                <div class="font-semibold">Church Facilities Manager</div>
-                                <div class="text-sm text-gray-400">DeKalb County, TN</div>
-                            </div>
-                        </div>
+                        <div class="text-sm text-gray-400">Total Investment</div>
+                        <div class="text-4xl font-bold gradient-text" id="total-price-calc">$4,320</div>
+                        <div class="text-sm text-amber-400 mt-2">Financing available from $99/month</div>
                     </div>
+                </div>
 
-                    <div class="glass-card p-6 rounded-xl">
-                        <div class="flex mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-300 mb-4">"The outdoor LED sign we got for our storefront has been a game changer. Foot traffic is noticeably up and the remote management makes updates effortless."</p>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-full mr-3"></div>
-                            <div>
-                                <div class="font-semibold">Retail Business Owner</div>
-                                <div class="text-sm text-gray-400">Nashville, TN</div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6">Your Investment Details</h3>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white/5 rounded-lg">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Display Type</span>
+                                <span class="font-bold" id="display-type-summary">Indoor</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Display Size</span>
+                                <span class="font-bold"><span id="size-summary">6' × 4'</span></span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Square Footage</span>
+                                <span class="font-bold"><span id="sqft-summary">24</span> sq ft</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Number of Displays</span>
+                                <span class="font-bold" id="displays-summary">1</span>
                             </div>
                         </div>
+
+                        <div class="p-6 bg-gradient-to-r from-amber-600/20 to-amber-800/20 rounded-xl">
+                            <div class="text-sm text-gray-400 mb-2">Estimated Investment</div>
+                            <div class="text-4xl font-bold gradient-text mb-4" id="total-price">$4,320</div>
+                            <div class="text-sm text-amber-400">Financing available from $99/month</div>
+                        </div>
+
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Professional installation included</span></div>
+                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Multi-year warranty</span></div>
+                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>24/7 technical support</span></div>
+                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Free software updates</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        
-        
-        
-        <!-- CTA Section -->
-        <section class="py-20 px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-5xl font-bold mb-6">
-                    <span class="gradient-text">Ready to Transform Your Business?</span>
-                </h2>
-                <p class="text-xl text-gray-400 mb-8">
-                    Get a custom quote for your LED display needs. Professional consultation included.
-                </p>
-                
-                <form class="max-w-md mx-auto mb-8" onsubmit="handleSubmit(event)">
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <input 
-                            type="email" 
-                            placeholder="Enter your email" 
-                            class="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 focus:border-purple-500 focus:outline-none"
-                            required
-                        >
-                        <button type="submit" class="glow-button px-8 py-3 rounded-full font-semibold">
-                            Request Quote
-                        </button>
-                    </div>
-                </form>
-                
-                <p class="text-sm text-gray-500">
-                    🔒 Your data is secure. We'll never spam you.
-                </p>
+
+            <div class="text-center mt-10">
+                <a href="quote.html" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
+                    Get Your Free Quote &rarr;
+                </a>
+                <p class="text-sm text-gray-400 mt-3">Talk to our experts for volume discounts and special pricing</p>
             </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="border-t border-white/10 py-12 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid md:grid-cols-4 gap-8 mb-8">
-                    <div>
-                        <div class="text-2xl font-bold gradient-text mb-4">LPLED by LPCREATIVE, LLC</div>
-                        <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="py-20 px-6 bg-gradient-to-br from-gray-50 to-amber-50/30 text-gray-900">
+        <div class="max-w-6xl mx-auto text-center fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+            <p class="text-gray-400 text-lg mb-14 max-w-2xl mx-auto">See how our LED displays are transforming the game day experience across the country.</p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="product-card rounded-2xl overflow-hidden bg-white">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="images/projects/coppellfball.jpg" class="w-full h-full object-cover" alt="Coppell ISD" style="object-position: center 5%">
                     </div>
-                    <div>
-                        <h4 class="font-semibold mb-4">Products</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing Calculator</a></li>
-                            <li><a href="quote.html" class="hover:text-white transition-colors">Get a Quote</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold mb-4">Solutions</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li><a href="projects.html" class="hover:text-white transition-colors">Our Projects</a></li>
-                            <li><a href="quote.html" class="hover:text-white transition-colors">Scoreboards</a></li>
-                            <li><a href="quote.html" class="hover:text-white transition-colors">Digital Signage</a></li>
-                            <li><a href="quote.html" class="hover:text-white transition-colors">Video Walls</a></li>
-                        </ul>
-                    </div>
-                    <div id="contact">
-                        <h4 class="font-semibold mb-4">Contact</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
-                            <li><a href="quote.html" class="hover:text-white transition-colors">Request a Quote</a></li>
-                        </ul>
+                    <div class="p-5 text-left">
+                        <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Football</span>
+                        <h3 class="text-lg font-bold mt-1">Coppell ISD</h3>
+                        <p class="text-gray-400 text-sm">Coppell, TX</p>
                     </div>
                 </div>
-                
-                <div class="border-t border-white/10 pt-8 text-center text-gray-400">
-                    <p>&copy; 2026 LPLED by LPCREATIVE, LLC. All rights reserved.</p>
+
+                <div class="product-card rounded-2xl overflow-hidden bg-white">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="images/projects/coppellbball.jpeg" class="w-full h-full object-cover" alt="Coppell ISD Basketball">
+                    </div>
+                    <div class="p-5 text-left">
+                        <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Basketball</span>
+                        <h3 class="text-lg font-bold mt-1">Coppell ISD</h3>
+                        <p class="text-gray-400 text-sm">Coppell, TX</p>
+                    </div>
+                </div>
+
+                <div class="product-card rounded-2xl overflow-hidden bg-white">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="images/projects/rdalebaseball.jpeg" class="w-full h-full object-cover" alt="Riverdale Baseball" style="object-position: center 30%">
+                    </div>
+                    <div class="p-5 text-left">
+                        <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Baseball</span>
+                        <h3 class="text-lg font-bold mt-1">Riverdale High School</h3>
+                        <p class="text-gray-400 text-sm">Murfreesboro, TN</p>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </div>
-    
-    <!-- Chatbot -->
-    <div id="chatbot-container">
-        <button id="chatbot-toggle" class="glow-button w-16 h-16 rounded-full flex items-center justify-center shadow-2xl">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-            </svg>
-        </button>
-        
-        <div id="chatbot-window">
-            <div class="p-4 border-b border-white/10 flex justify-between items-center">
-                <h3 class="font-semibold">LPLED by LPCREATIVE, LLC Assistant</h3>
-                <button onclick="toggleChatbot()" class="text-gray-400 hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <div id="chat-messages">
-                <div class="chat-message bot-message">
-                    👋 Hi! I'm here to help you discover how LPLED by LPCREATIVE, LLC can transform your business. What would you like to know?
-                </div>
-            </div>
-            
-            <div class="p-4 border-t border-white/10">
-                <form onsubmit="sendChatMessage(event)" class="flex gap-2">
-                    <input 
-                        type="text" 
-                        id="chat-input"
-                        placeholder="Type your message..." 
-                        class="flex-1 px-4 py-2 rounded-full bg-white/10 border border-white/20 focus:border-purple-500 focus:outline-none text-sm"
-                    >
-                    <button type="submit" class="glow-button px-4 py-2 rounded-full">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                        </svg>
+
+            <a href="projects.html" class="cta-outline px-8 py-3 rounded-full font-semibold inline-block text-lg">
+                View All Projects &rarr;
+            </a>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gradient-to-br from-[#1f2937] via-[#111827] to-[#0f172a] text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Program?</h2>
+            <p class="text-xl text-white/80 mb-8">
+                Get a custom quote for your LED display needs. Free consultation included — no obligation.
+            </p>
+
+            <form class="max-w-md mx-auto mb-6" onsubmit="handleSubmit(event)">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 rounded-full bg-white/20 border border-white/30 focus:border-white focus:outline-none placeholder-white/60 text-white" required>
+                    <button type="submit" class="px-8 py-3 rounded-full font-semibold bg-white text-amber-500 hover:bg-gray-100 transition-colors">
+                        Request Quote
                     </button>
-                </form>
+                </div>
+            </form>
+            <p class="text-sm text-white/60">Your data is secure. We'll never spam you.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] text-white py-14 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <img src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 mb-4">
+                    <p class="text-gray-400 text-sm">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#products" class="hover:text-white transition-colors">LED Scoreboards</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Indoor Displays</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Outdoor Displays</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="projects.html" class="hover:text-white transition-colors">Our Projects</a></li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div id="contact">
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
+                        <li>Smithville, TN</li>
+                        <li><a href="quote.html" class="hover:text-white transition-colors">Request a Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 LPLED by LPCREATIVE, LLC. All rights reserved.</p>
             </div>
         </div>
-    </div>
-    
-    <!-- Exit Intent Popup -->
-    <div id="exit-popup">
-        <div class="glass-card p-8 rounded-2xl max-w-md mx-4 relative">
-            <button onclick="closeExitPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <h3 class="text-3xl font-bold mb-4">
-                <span class="gradient-text">Wait! Don't Leave Empty-Handed</span>
-            </h3>
-            <p class="text-gray-400 mb-6">
-                Get our exclusive guide: "10 Ways Digital Signage Boosts Revenue" - Used by Fortune 500 companies!
-            </p>
-            
-            <form onsubmit="handleExitOffer(event)">
-                <input 
-                    type="email" 
-                    placeholder="Enter your email" 
-                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-purple-500 focus:outline-none mb-4"
-                    required
-                >
-                <button type="submit" class="w-full glow-button px-6 py-3 rounded-full font-semibold">
-                    Send Me The Guide
-                </button>
-            </form>
-            
-            <p class="text-xs text-gray-500 mt-4 text-center">
-                No spam, ever. Unsubscribe anytime.
-            </p>
-        </div>
-    </div>
-    
+    </footer>
+
     <script>
-        // Particle Background
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const particles = [];
-        const particleCount = 100;
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-            }
-            
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
-        
-        // Initialize particles
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            
-            // Draw connections
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(102, 126, 234, ${0.1 * (1 - distance / 100)})`;
-                        ctx.stroke();
-                    }
-                });
-            });
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        animateParticles();
-        
-        // Resize handler
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-        
-        
         // Hero slideshow
         (function() {
             const slides = document.querySelectorAll('.hero-slide');
@@ -1061,347 +615,77 @@
             }, 4000);
         })();
 
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Hero animations
-        gsap.to("#hero-badge", { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
-        gsap.to("#hero-title", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
-        gsap.to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.7 });
-        gsap.to("#hero-trust", { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
-        gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 1, delay: 1.1 });
-        gsap.to("#hero-urgency", { opacity: 1, y: 0, duration: 0.8, delay: 1.3 });
-        gsap.to("#hero-stats", { opacity: 1, y: 0, duration: 1, delay: 1.5 });
-        gsap.to("#scroll-indicator", { opacity: 1, duration: 1, delay: 1.7 });
-        
-        // Feature cards animation
-        gsap.utils.toArray(".feature-card").forEach((card, i) => {
-            gsap.fromTo(card, 
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
-                    }
+        // Scroll fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
-            );
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
         });
-        
-        // Form submission handler
+
+        // Form submission
         async function handleSubmit(e) {
             e.preventDefault();
             const email = e.target.querySelector('input[type="email"]').value;
             const button = e.target.querySelector('button');
             const originalText = button.textContent;
-
             button.textContent = 'Sending...';
             button.disabled = true;
-
             try {
                 const res = await fetch('/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, source: 'cta-form' })
                 });
-
                 if (res.ok) {
                     button.textContent = '✓ We\'ll be in touch!';
-                    button.classList.add('bg-green-600');
                     e.target.reset();
                 } else {
                     button.textContent = 'Error — try again';
-                    button.classList.add('bg-red-600');
                 }
             } catch {
                 button.textContent = 'Error — try again';
-                button.classList.add('bg-red-600');
             }
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-600', 'bg-red-600');
-                button.disabled = false;
-            }, 3000);
+            setTimeout(() => { button.textContent = originalText; button.disabled = false; }, 3000);
         }
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        
+
         // Pricing Calculator
         function updatePricing() {
-            // Get screen type
             const screenType = document.querySelector('input[name="screenType"]:checked').value;
             const pricePerSqFt = 300;
-            
-            // Get dimensions
             const width = parseFloat(document.getElementById('screenWidth').value);
             const height = parseFloat(document.getElementById('screenHeight').value);
             const numDisplays = parseInt(document.getElementById('numDisplays').value);
-            
-            // Calculate square footage and total
             const sqFt = width * height;
             const totalPrice = sqFt * pricePerSqFt * numDisplays;
-            
-            // Update display values on sliders
+
             document.getElementById('width-value').textContent = width + 'ft';
             document.getElementById('height-value').textContent = height + 'ft';
             document.getElementById('displays-value').textContent = numDisplays;
-            
-            // Update calculation breakdown in left panel
             document.getElementById('total-sqft').textContent = sqFt.toFixed(1);
             document.getElementById('price-per-sqft').textContent = '$' + pricePerSqFt;
             document.getElementById('num-displays-show').textContent = numDisplays;
-            
-            // Update total price in left panel
             document.getElementById('total-price-calc').textContent = '$' + totalPrice.toLocaleString();
-            
-            // Update summary in right panel
             document.getElementById('display-type-summary').textContent = screenType.charAt(0).toUpperCase() + screenType.slice(1);
             document.getElementById('size-summary').textContent = width + "' × " + height + "'";
             document.getElementById('sqft-summary').textContent = sqFt.toFixed(1);
             document.getElementById('displays-summary').textContent = numDisplays;
-            
-            // Update total price in right panel
             document.getElementById('total-price').textContent = '$' + totalPrice.toLocaleString();
         }
-        
-        // Initialize pricing on load
-        document.addEventListener('DOMContentLoaded', function() {
-            updatePricing();
-        });
-        
-        // ROI Chart function
-        function updateROIChart(monthlyPrice) {
-            const canvas = document.getElementById('roi-chart');
-            const ctx = canvas.getContext('2d');
-            
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw simple line chart
-            ctx.strokeStyle = '#667eea';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            
-            // ROI curve
-            for (let i = 0; i < 12; i++) {
-                const x = (i / 11) * canvas.width;
-                const revenue = monthlyPrice * 3.5 * Math.log(i + 1);
-                const y = canvas.height - (revenue / (monthlyPrice * 10)) * canvas.height;
-                
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            
-            ctx.stroke();
-            
-            // Draw ROI positive line
-            ctx.strokeStyle = '#10b981';
-            ctx.setLineDash([5, 5]);
-            ctx.beginPath();
-            ctx.moveTo(0, canvas.height / 2);
-            ctx.lineTo(canvas.width, canvas.height / 2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
-        
-        // Initialize ROI chart
-        updateROIChart(299);
-        
-        // Demo Scheduler
-        function scheduleDemo(e) {
-            e.preventDefault();
-            const button = e.target.querySelector('button[type="submit"]');
-            const originalText = button.textContent;
-            
-            button.textContent = '✓ Demo Scheduled!';
-            button.classList.add('bg-green-600');
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-600');
-                e.target.reset();
-            }, 3000);
-        }
-        
-        
-        // Chatbot functionality
-        const chatbotToggle = document.getElementById('chatbot-toggle');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const chatMessages = document.getElementById('chat-messages');
-        
-        chatbotToggle.addEventListener('click', toggleChatbot);
-        
-        function toggleChatbot() {
-            chatbotWindow.classList.toggle('active');
-            if (chatbotWindow.classList.contains('active')) {
-                document.getElementById('chat-input').focus();
-            }
-        }
-        
-        function sendChatMessage(e) {
-            e.preventDefault();
-            const input = document.getElementById('chat-input');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            // Add user message
-            addChatMessage(message, 'user');
-            input.value = '';
-            
-            // Simulate bot response
-            setTimeout(() => {
-                const responses = {
-                    'pricing': 'Our displays are $300/sq ft for both indoor and outdoor. Use our pricing calculator above or request a free quote!',
-                    'demo': 'We would love to show you what we can do! Head to our quote page and we will set up a consultation.',
-                    'features': 'LPLED offers stadium-grade LED displays with professional installation, remote management, weather-resistant IP65 rated panels, custom content design, and 24/7 support.',
-                    'support': 'We offer 24/7 US-based support via phone and email. Reach us at lucas@lpcreative.studio or call anytime!',
-                    'default': 'Great question! Our team would love to help. You can request a free quote or email us at lucas@lpcreative.studio'
-                };
-                
-                let response = responses.default;
-                const lowerMessage = message.toLowerCase();
-                
-                for (const [key, value] of Object.entries(responses)) {
-                    if (lowerMessage.includes(key)) {
-                        response = value;
-                        break;
-                    }
-                }
-                
-                addChatMessage(response, 'bot');
-            }, 1000);
-        }
-        
-        function addChatMessage(message, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('chat-message', sender === 'bot' ? 'bot-message' : 'user-message');
-            messageDiv.textContent = message;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        
-        // Exit Intent Popup
-        let exitIntentShown = false;
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0 && !exitIntentShown) {
-                exitIntentShown = true;
-                document.getElementById('exit-popup').classList.add('active');
-            }
-        });
-        
-        function closeExitPopup() {
-            document.getElementById('exit-popup').classList.remove('active');
-        }
-        
-        async function handleExitOffer(e) {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
 
-            try {
-                await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source: 'exit-popup' })
-                });
-            } catch {}
-
-            closeExitPopup();
-            showNotification('Check your inbox for the guide!', 'success');
-        }
-        
-        // Progress Bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progress-bar').style.width = scrolled + '%';
-        });
-        
-        // Notification system
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-20 right-4 px-6 py-3 rounded-lg shadow-lg z-50 ${
-                type === 'success' ? 'bg-green-600' : 'bg-purple-600'
-            } text-white transform translate-x-full transition-transform`;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-        
-        // Show periodic reminders
-        const notifications = [
-            'Free consultation with every quote request!',
-            'Ask us about financing options starting at $99/mo',
-            'Indoor & outdoor displays available — get a free quote'
-        ];
-
-        let notifIndex = 0;
-        setInterval(() => {
-            showNotification(notifications[notifIndex % notifications.length], 'success');
-            notifIndex++;
-        }, 60000);
-        
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + K to open chat
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                toggleChatbot();
-            }
-            // Escape to close popups
-            if (e.key === 'Escape') {
-                closeExitPopup();
-                if (chatbotWindow.classList.contains('active')) {
-                    toggleChatbot();
-                }
-            }
-        });
-        
-        // Intersection Observer for advanced animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
+        document.addEventListener('DOMContentLoaded', function() { updatePricing(); });
     </script>
 </body>
 </html>
