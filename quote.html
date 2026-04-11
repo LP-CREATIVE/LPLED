@@ -39,18 +39,10 @@
         
         /* Custom gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 8s ease infinite;
-        }
-        
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
         /* Glass morphism card */
@@ -58,21 +50,23 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
         
         /* Glow button */
         .glow-button {
             position: relative;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: #1f2937;
+            font-weight: 700;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.4);
         }
-        
+
         .glow-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 0 30px rgba(217, 119, 6, 0.6);
         }
         
         /* Form styles */
@@ -85,9 +79,9 @@
         
         .form-input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #f59e0b;
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
         }
         
         .form-select {
@@ -122,24 +116,16 @@
             height: 20px;
             margin-right: 12px;
             cursor: pointer;
-            accent-color: #667eea;
+            accent-color: #f59e0b;
         }
-        
+
         .radio-option:hover {
-            color: #667eea;
+            color: #f59e0b;
         }
         
         /* Animated background gradient */
         .animated-gradient-bg {
-            background: linear-gradient(-45deg, #000428, #004e92, #000428, #004e92);
-            background-size: 400% 400%;
-            animation: gradient-animate 15s ease infinite;
-        }
-        
-        @keyframes gradient-animate {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: #111827;
         }
     </style>
 </head>
@@ -147,15 +133,15 @@
     <div id="top"></div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4">
+    <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text">LPLED by LPCREATIVE, LLC</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="hover:text-purple-400 transition-colors">Homepage</a>
-                    <a href="projects.html" class="hover:text-purple-400 transition-colors">Projects</a>
-                    <a href="index.html#pricing" class="hover:text-purple-400 transition-colors">Pricing</a>
-                    <a href="index.html#contact" class="hover:text-purple-400 transition-colors">Contact</a>
+                <img src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16">
+                <div class="hidden md:flex space-x-8 text-white/90 font-medium">
+                    <a href="index.html" class="hover:text-amber-400 transition-colors">Home</a>
+                    <a href="projects.html" class="hover:text-amber-400 transition-colors">Projects</a>
+                    <a href="index.html#pricing" class="hover:text-amber-400 transition-colors">Pricing</a>
+                    <a href="index.html#contact" class="hover:text-amber-400 transition-colors">Contact</a>
                 </div>
             </div>
         </div>
