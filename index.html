@@ -390,14 +390,14 @@
                                     <input type="radio" name="screenType" value="indoor" checked onchange="updatePricing()" class="sr-only peer">
                                     <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
                                         <div class="text-lg font-semibold mb-1">Indoor</div>
-                                        <div class="text-sm text-gray-400">$300/sq ft</div>
+                                        <div class="text-sm text-gray-400">$210/sq ft</div>
                                     </div>
                                 </label>
                                 <label class="relative">
                                     <input type="radio" name="screenType" value="outdoor" onchange="updatePricing()" class="sr-only peer">
                                     <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
                                         <div class="text-lg font-semibold mb-1">Outdoor</div>
-                                        <div class="text-sm text-gray-400">$300/sq ft</div>
+                                        <div class="text-sm text-gray-400">$210/sq ft</div>
                                     </div>
                                 </label>
                             </div>
@@ -438,7 +438,7 @@
                         <div class="text-sm text-gray-400">Display Details</div>
                         <div class="text-lg mb-2">
                             <span id="total-sqft" class="font-bold">24</span> sq ft ×
-                            <span id="price-per-sqft" class="font-bold">$300</span>/sq ft ×
+                            <span id="price-per-sqft" class="font-bold">$210</span>/sq ft ×
                             <span id="num-displays-show" class="font-bold">1</span> display(s)
                         </div>
                         <div class="text-sm text-gray-400">Total Investment</div>
@@ -664,7 +664,7 @@
         // Pricing Calculator
         function updatePricing() {
             const screenType = document.querySelector('input[name="screenType"]:checked').value;
-            const pricePerSqFt = 300;
+            const pricePerSqFt = 210;
             const width = parseFloat(document.getElementById('screenWidth').value);
             const height = parseFloat(document.getElementById('screenHeight').value);
             const numDisplays = parseInt(document.getElementById('numDisplays').value);
