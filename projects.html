@@ -22,6 +22,28 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            50:  '#fef1ec',
+                            100: '#fedcd0',
+                            200: '#fdbba5',
+                            300: '#fb9779',
+                            400: '#fa8066',
+                            500: '#f75f3f',
+                            600: '#e04829',
+                            700: '#b83820',
+                            800: '#8f2b18',
+                            900: '#661f10',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -43,7 +65,7 @@
 
         /* Custom gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+            background: linear-gradient(135deg, #e04829 0%, #f75f3f 50%, #fa8066 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -52,7 +74,7 @@
         /* Glowing button */
         .glow-button {
             position: relative;
-            background: linear-gradient(135deg, #d97706, #f59e0b);
+            background: linear-gradient(135deg, #e04829, #f75f3f);
             color: #1f2937;
             font-weight: 700;
             overflow: hidden;
@@ -61,7 +83,7 @@
 
         .glow-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(217, 119, 6, 0.5);
+            box-shadow: 0 10px 40px rgba(224, 72, 41, 0.5);
         }
 
         /* Glass morphism cards */
@@ -86,20 +108,20 @@
         }
 
         .filter-btn:hover {
-            background: rgba(217, 119, 6, 0.15);
-            border-color: rgba(217, 119, 6, 0.4);
+            background: rgba(224, 72, 41, 0.15);
+            border-color: rgba(224, 72, 41, 0.4);
         }
 
         .filter-btn.active {
-            background: linear-gradient(135deg, #d97706, #f59e0b);
+            background: linear-gradient(135deg, #e04829, #f75f3f);
             color: #1f2937;
             border-color: transparent;
-            box-shadow: 0 0 20px rgba(217, 119, 6, 0.4);
+            box-shadow: 0 0 20px rgba(224, 72, 41, 0.4);
         }
 
         /* Project card image placeholder */
         .project-image {
-            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(31, 41, 55, 0.3));
+            background: linear-gradient(135deg, rgba(224, 72, 41, 0.1), rgba(31, 41, 55, 0.3));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -133,9 +155,9 @@
 
         /* Pulse animation for CTA */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(217, 119, 6, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(224, 72, 41, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(224, 72, 41, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(224, 72, 41, 0); }
         }
 
         .pulse {
