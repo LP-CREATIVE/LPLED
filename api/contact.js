@@ -1,14 +1,30 @@
 const nodemailer = require('nodemailer');
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, source } = req.body;
+  const { email, source, website } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
+  // Honeypot: real users never fill this hidden field. Pretend success so bots don't adapt.
+  if (website) {
+    return res.status(200).json({ success: true });
+  }
+
+  if (!email || typeof email !== 'string' || email.length > 254 || !EMAIL_RE.test(email)) {
+    return res.status(400).json({ error: 'A valid email is required' });
   }
 
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
@@ -27,12 +43,13 @@ module.exports = async function handler(req, res) {
   });
 
   const sourceLabel = source === 'exit-popup' ? 'Exit Intent Guide Download' : 'Quote Request (CTA)';
+  const safeEmail = escapeHtml(email);
 
   try {
     await transporter.sendMail({
       from: `"LPLED Website" <${process.env.SMTP_USER}>`,
       to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
-      subject: `New Lead: ${email} (${sourceLabel})`,
+      subject: `New Lead: ${email.replace(/[\r\n]/g, ' ')} (${sourceLabel})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 30px; border-radius: 10px 10px 0 0;">
@@ -40,7 +57,7 @@ module.exports = async function handler(req, res) {
             <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0;">${sourceLabel}</p>
           </div>
           <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-            <p style="font-size: 18px; color: #333;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p style="font-size: 18px; color: #333;"><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
             <p style="color: #666;">Submitted at ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET</p>
           </div>
         </div>

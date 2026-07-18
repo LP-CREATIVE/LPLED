@@ -18,10 +18,16 @@
     <meta property="og:site_name" content="LPLED by LPCREATIVE, LLC">
     <meta property="og:locale" content="en_US">
 
+    <meta property="og:image" content="https://www.lpcreative.studio/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LED video scoreboard installed at a high school football stadium">
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="LED Displays & Scoreboards | LPLED — Smithville, TN">
     <meta name="twitter:description" content="Professional LED displays, scoreboards, and digital signage. Based in Smithville, TN — serving Tennessee and nationwide.">
+    <meta name="twitter:image" content="https://www.lpcreative.studio/images/og-image.jpg">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -47,36 +53,8 @@
     }
     </script>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { DEFAULT: '#059669', dark: '#065f46', light: '#34d399' },
-                        amber: {
-                            50:  '#fef1ec',
-                            100: '#fedcd0',
-                            200: '#fdbba5',
-                            300: '#fb9779',
-                            400: '#fa8066',
-                            500: '#f75f3f',
-                            600: '#e04829',
-                            700: '#b83820',
-                            800: '#8f2b18',
-                            900: '#661f10',
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="css/tailwind.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -564,6 +542,7 @@
             </p>
 
             <form class="max-w-md mx-auto mb-6" onsubmit="handleSubmit(event)">
+                <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
                 <div class="flex flex-col sm:flex-row gap-3">
                     <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 rounded-full bg-white/20 border border-white/30 focus:border-white focus:outline-none placeholder-white/60 text-white" required>
                     <button type="submit" class="px-8 py-3 rounded-full font-semibold bg-white text-amber-500 hover:bg-gray-100 transition-colors">
@@ -651,6 +630,7 @@
         async function handleSubmit(e) {
             e.preventDefault();
             const email = e.target.querySelector('input[type="email"]').value;
+            const website = e.target.querySelector('input[name="website"]').value;
             const button = e.target.querySelector('button');
             const originalText = button.textContent;
             button.textContent = 'Sending...';
@@ -659,7 +639,7 @@
                 const res = await fetch('/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source: 'cta-form' })
+                    body: JSON.stringify({ email, source: 'cta-form', website })
                 });
                 if (res.ok) {
                     button.textContent = '✓ We\'ll be in touch!';

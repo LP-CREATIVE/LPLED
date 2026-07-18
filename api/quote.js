@@ -1,19 +1,40 @@
 const nodemailer = require('nodemailer');
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Escape and cap a user-supplied field before it goes into the email HTML.
+function clean(value, maxLen = 300) {
+  if (value === undefined || value === null) return '';
+  return escapeHtml(String(value).slice(0, maxLen));
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const {
-    name, email, phone, company, address,
-    budget, displayType, width, height, numDisplays,
-    displayConfig, location, contentType, timeline,
-    source, description, contactMethod
-  } = req.body;
+  const body = req.body || {};
 
-  if (!name || !email || !phone) {
+  // Honeypot: real users never fill this hidden field. Pretend success so bots don't adapt.
+  if (body.website) {
+    return res.status(200).json({ success: true });
+  }
+
+  if (!body.name || !body.email || !body.phone) {
     return res.status(400).json({ error: 'Name, email, and phone are required' });
+  }
+
+  if (typeof body.email !== 'string' || body.email.length > 254 || !EMAIL_RE.test(body.email)) {
+    return res.status(400).json({ error: 'A valid email is required' });
   }
 
   // Check env vars are set
@@ -32,7 +53,24 @@ module.exports = async function handler(req, res) {
     }
   });
 
-  const sqft = (parseFloat(width) || 0) * (parseFloat(height) || 0);
+  const name = clean(body.name, 100);
+  const email = clean(body.email, 254);
+  const phone = clean(body.phone, 40);
+  const company = clean(body.company, 150);
+  const address = clean(body.address, 300);
+  const budget = clean(body.budget, 50);
+  const displayType = clean(body.displayType, 50);
+  const width = clean(body.width, 10);
+  const height = clean(body.height, 10);
+  const numDisplays = clean(body.numDisplays, 10);
+  const location = clean(body.location, 200);
+  const contentType = clean(body.contentType, 50);
+  const timeline = clean(body.timeline, 50);
+  const source = clean(body.source, 50);
+  const description = clean(body.description, 5000);
+  const contactMethod = clean(body.contactMethod, 20);
+
+  const sqft = (parseFloat(body.width) || 0) * (parseFloat(body.height) || 0);
 
   const htmlBody = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -57,7 +95,7 @@ module.exports = async function handler(req, res) {
           <tr><td style="padding: 8px 0; color: #666;">Display Type</td><td style="padding: 8px 0;">${displayType}</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Dimensions</td><td style="padding: 8px 0;">${width}' x ${height}' (${sqft} sq ft)</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Number of Displays</td><td style="padding: 8px 0;">${numDisplays}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666;">Configuration</td><td style="padding: 8px 0;">${displayConfig === 'double' ? 'Double Sided' : 'Single Sided'}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Configuration</td><td style="padding: 8px 0;">${body.displayConfig === 'double' ? 'Double Sided' : 'Single Sided'}</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Location/Venue</td><td style="padding: 8px 0;">${location}</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Content Type</td><td style="padding: 8px 0;">${contentType}</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Timeline</td><td style="padding: 8px 0;">${timeline}</td></tr>
@@ -72,12 +110,16 @@ module.exports = async function handler(req, res) {
     </div>
   `;
 
+  const subjectName = String(body.name).slice(0, 100).replace(/[\r\n]/g, ' ');
+  const subjectCompany = body.company ? ` — ${String(body.company).slice(0, 100).replace(/[\r\n]/g, ' ')}` : '';
+  const subjectBudget = String(body.budget || '').slice(0, 50).replace(/[\r\n]/g, ' ');
+
   try {
     await transporter.sendMail({
       from: `"LPLED Website" <${process.env.SMTP_USER}>`,
       to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
-      replyTo: email,
-      subject: `New Quote Request: ${name}${company ? ` — ${company}` : ''} (${budget})`,
+      replyTo: body.email,
+      subject: `New Quote Request: ${subjectName}${subjectCompany} (${subjectBudget})`,
       html: htmlBody
     });
 

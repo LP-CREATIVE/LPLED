@@ -15,35 +15,19 @@
     <meta property="og:url" content="https://www.lpcreative.studio/quote">
     <meta property="og:site_name" content="LPLED by LPCREATIVE, LLC">
 
+    <meta property="og:image" content="https://www.lpcreative.studio/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LED video scoreboard installed at a high school football stadium">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Get a Free LED Display Quote | LPLED — Smithville, TN">
     <meta name="twitter:description" content="Request a free custom quote for LED displays, scoreboards, or digital signage. Based in TN, serving nationwide.">
+    <meta name="twitter:image" content="https://www.lpcreative.studio/images/og-image.jpg">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        amber: {
-                            50:  '#fef1ec',
-                            100: '#fedcd0',
-                            200: '#fdbba5',
-                            300: '#fb9779',
-                            400: '#fa8066',
-                            500: '#f75f3f',
-                            600: '#e04829',
-                            700: '#b83820',
-                            800: '#8f2b18',
-                            900: '#661f10',
-                        },
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="css/tailwind.css">
 
     <style>
         * {
@@ -182,6 +166,7 @@
             </div>
             
             <form id="quoteForm" class="glass-card p-8 md:p-12 rounded-3xl">
+                <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
                 <!-- Contact Information Section -->
                 <div class="mb-12">
                     <h2 class="text-2xl font-bold mb-6 gradient-text">Contact Information</h2>
