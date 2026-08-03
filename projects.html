@@ -169,9 +169,10 @@
                     <a href="/#packages" class="hover:text-amber-400 transition-colors">Pricing</a>
                     <a href="/#contact" class="hover:text-amber-400 transition-colors">Contact</a>
                 </div>
-                <a href="/quote" class="glow-button px-6 py-2 rounded-full font-semibold inline-block">
-                    Free Quote
-                </a>
+                <div class="flex items-center gap-5">
+                    <a href="tel:+16158157685" class="hidden sm:inline-block text-white font-semibold text-sm hover:text-amber-400 transition-colors">(615) 815-7685</a>
+                    <a href="/quote" class="glow-button px-6 py-2 rounded-full font-semibold inline-block">Free Quote</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -213,6 +214,9 @@
     <!-- Projects Grid -->
     <section class="pb-20 px-6">
         <div class="max-w-7xl mx-auto">
+            <!-- The cards below are h3; this gives them an h2 parent so the outline
+                 does not jump H1 -> H3. Visually hidden, screen readers still get it. -->
+            <h2 class="sr-only">Installations by sport</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
 
                 <!-- FOOTBALL PROJECTS -->
@@ -443,14 +447,14 @@
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Products</h4>
+                    <h3 class="font-semibold mb-4">Products</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="/#packages" class="hover:text-white transition-colors">Display Packages</a></li>
                         <li><a href="/quote" class="hover:text-white transition-colors">Get a Quote</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Solutions</h4>
+                    <h3 class="font-semibold mb-4">Solutions</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="/football-scoreboards" class="hover:text-white transition-colors">Football Scoreboards</a></li>
                         <li><a href="/baseball-softball-scoreboards" class="hover:text-white transition-colors">Baseball &amp; Softball</a></li>
@@ -460,7 +464,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <h3 class="font-semibold mb-4">Contact</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="tel:+16158157685" class="hover:text-white transition-colors">(615) 815-7685</a></li>
                         <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
