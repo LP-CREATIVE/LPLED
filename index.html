@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LED Displays & Scoreboards | LPLED by LPCREATIVE, LLC — Smithville, TN</title>
-    <meta name="description" content="Professional LED displays, scoreboards, and digital signage for schools, stadiums, churches, and businesses. Based in Smithville, TN — serving all of Tennessee and nationwide. Free consultation and custom quotes.">
-    <meta name="keywords" content="LED displays Tennessee, LED scoreboards TN, digital signage Tennessee, outdoor LED signs, indoor LED displays, stadium scoreboards, church LED displays, retail digital signage, Smithville TN, Nashville, Middle Tennessee, LED displays nationwide">
+    <title>LED Scoreboards &amp; Video Boards | LPLED — Smithville, TN</title>
+    <meta name="description" content="Custom LED scoreboards and video boards for schools, stadiums, and churches. Based in Smithville, TN — serving Tennessee and nationwide.">
     <meta name="author" content="LPCREATIVE, LLC">
     <meta name="theme-color" content="#000000">
     <link rel="canonical" href="https://www.lpcreative.studio/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="LED Displays & Scoreboards | LPLED — Smithville, TN">
-    <meta property="og:description" content="Professional LED displays, scoreboards, and digital signage for schools, stadiums, churches, and businesses. Based in Tennessee, serving nationwide.">
+    <meta property="og:title" content="LED Scoreboards &amp; Video Boards | LPLED — Smithville, TN">
+    <meta property="og:description" content="Custom LED scoreboards and video boards for schools, stadiums, and churches. Serving Tennessee and nationwide.">
     <meta property="og:url" content="https://www.lpcreative.studio/">
     <meta property="og:site_name" content="LPLED by LPCREATIVE, LLC">
     <meta property="og:locale" content="en_US">
@@ -25,8 +24,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LED Displays & Scoreboards | LPLED — Smithville, TN">
-    <meta name="twitter:description" content="Professional LED displays, scoreboards, and digital signage. Based in Smithville, TN — serving Tennessee and nationwide.">
+    <meta name="twitter:title" content="LED Scoreboards &amp; Video Boards | LPLED — Smithville, TN">
+    <meta name="twitter:description" content="Custom LED scoreboards and video boards for schools, stadiums, and churches. Serving Tennessee and nationwide.">
     <meta name="twitter:image" content="https://www.lpcreative.studio/images/og-image.jpg">
 
     <!-- Structured Data -->
@@ -34,16 +33,33 @@
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://www.lpcreative.studio/#business",
       "name": "LPLED by LPCREATIVE, LLC",
       "url": "https://www.lpcreative.studio",
       "email": "lucas@lpcreative.studio",
+      "telephone": "+1-615-815-7685",
       "description": "Professional LED displays, scoreboards, and digital signage solutions for schools, stadiums, churches, and businesses. Based in Smithville, TN — serving Tennessee and nationwide.",
+      "image": "https://www.lpcreative.studio/images/og-image.jpg",
+      "logo": "https://www.lpcreative.studio/images/namelogowhite.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Smithville",
         "addressRegion": "TN",
         "addressCountry": "US"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.9598,
+        "longitude": -85.8144
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
       "areaServed": [
         { "@type": "State", "name": "Tennessee" },
         { "@type": "Country", "name": "United States" }
@@ -148,7 +164,7 @@
             transform: translateY(-4px);
         }
 
-        /* Glass card for calculator */
+        /* Glass card */
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -187,17 +203,20 @@
     <nav class="fixed top-0 w-full bg-[#1f2937]/95 backdrop-blur-md border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="index.html"><img src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16"></a>
+                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="#top" class="hover:text-white transition-colors" onclick="window.scrollTo(0,0); return false;">Home</a>
                     <a href="#products" class="hover:text-white transition-colors">Products</a>
-                    <a href="projects.html" class="hover:text-white transition-colors">Projects</a>
-                    <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                    <a href="/projects" class="hover:text-white transition-colors">Projects</a>
+                    <a href="#packages" class="hover:text-white transition-colors">Pricing</a>
                     <a href="#contact" class="hover:text-white transition-colors">Contact</a>
                 </div>
-                <a href="quote.html" class="bg-amber-500 text-gray-900 px-6 py-2.5 rounded-full font-bold text-sm inline-block hover:bg-amber-400 transition-colors">
-                    Free Quote
-                </a>
+                <div class="flex items-center gap-5">
+                    <a href="tel:+16158157685" class="hidden sm:inline-block text-white font-semibold text-sm hover:text-amber-400 transition-colors">(615) 815-7685</a>
+                    <a href="/quote" class="bg-amber-500 text-gray-900 px-6 py-2.5 rounded-full font-bold text-sm inline-block hover:bg-amber-400 transition-colors">
+                        Free Quote
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -205,13 +224,13 @@
     <!-- Hero Section -->
     <section class="relative flex items-center justify-center mt-[72px] overflow-hidden" style="min-height: 75vh;">
         <div id="hero-slideshow" class="absolute inset-0 z-0">
-            <img src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
-            <img src="images/projects/keller.png" class="hero-slide" alt="" style="object-position: center 45%">
-            <img src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
-            <img src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img width="900" height="1200" src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
+            <img width="647" height="1400" src="images/projects/keller.jpg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img width="1200" height="900" src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
+            <img width="1125" height="930" src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img width="1200" height="1083" src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img width="1400" height="1050" src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+            <img width="1050" height="1400" src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-[#1f2937]/50 to-black/70 z-[1]"></div>
 
@@ -223,7 +242,7 @@
                 High-quality LED scoreboards and displays for schools, stadiums, churches, and businesses — with professional installation and top-tier service.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <a href="quote.html" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
+                <a href="/quote" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
                     Get Your Free Quote &rarr;
                 </a>
                 <a href="#products" class="cta-outline px-10 py-4 rounded-full text-lg font-bold inline-block border-white text-white hover:bg-white hover:text-black">
@@ -245,7 +264,7 @@
             <p class="text-center text-gray-400 mb-14 text-lg max-w-2xl mx-auto">From outdoor stadium scoreboards to indoor video walls, we have the perfect LED solution for your needs.</p>
 
             <div class="grid md:grid-cols-3 gap-8 fade-up">
-                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                <a href="/quote" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
                     <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
                         <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
                     </div>
@@ -255,7 +274,7 @@
                     </div>
                 </a>
 
-                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                <a href="/quote" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
                     <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
                         <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
                     </div>
@@ -265,7 +284,7 @@
                     </div>
                 </a>
 
-                <a href="quote.html" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
+                <a href="/quote" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
                     <div class="h-56 bg-gradient-to-br from-amber-500/10 to-amber-700/10 flex items-center justify-center">
                         <svg class="w-24 h-24 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
                     </div>
@@ -361,126 +380,111 @@
         </div>
     </section>
 
-    <!-- Pricing Calculator -->
-    <section id="pricing" class="py-20 px-6 bg-[#1f2937] text-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Calculate Your Investment</span>
+    <!-- Display Packages -->
+    <section id="packages" class="py-20 px-6 bg-gradient-to-br from-[#1f2937] via-[#111827] to-[#1f2937] text-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                <span class="gradient-text">Display Packages</span>
             </h2>
+            <p class="text-center text-white/70 mb-14 text-lg max-w-2xl mx-auto">Six standard sizes engineered to fit any venue — from training facilities to championship stadiums.</p>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-6">Display Pricing Calculator</h3>
-
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2">Screen Type</label>
-                            <div class="grid grid-cols-2 gap-4">
-                                <label class="relative">
-                                    <input type="radio" name="screenType" value="indoor" checked onchange="updatePricing()" class="sr-only peer">
-                                    <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
-                                        <div class="text-lg font-semibold mb-1">Indoor</div>
-                                        <div class="text-sm text-gray-400">$210/sq ft</div>
-                                    </div>
-                                </label>
-                                <label class="relative">
-                                    <input type="radio" name="screenType" value="outdoor" onchange="updatePricing()" class="sr-only peer">
-                                    <div class="glass-card p-4 rounded-lg cursor-pointer text-center peer-checked:border-amber-500 peer-checked:bg-amber-600/20 transition-all">
-                                        <div class="text-lg font-semibold mb-1">Outdoor</div>
-                                        <div class="text-sm text-gray-400">$210/sq ft</div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2">Screen Width (feet)</label>
-                            <input type="range" id="screenWidth" min="2" max="100" value="20" step="0.5" class="w-full" oninput="updatePricing()">
-                            <div class="flex justify-between text-sm">
-                                <span>2ft</span>
-                                <span id="width-value" class="font-bold text-amber-400">20ft</span>
-                                <span>100ft</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2">Screen Height (feet)</label>
-                            <input type="range" id="screenHeight" min="1" max="50" value="10" step="0.5" class="w-full" oninput="updatePricing()">
-                            <div class="flex justify-between text-sm">
-                                <span>1ft</span>
-                                <span id="height-value" class="font-bold text-amber-400">10ft</span>
-                                <span>50ft</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2">Number of Displays</label>
-                            <input type="range" id="numDisplays" min="1" max="50" value="1" class="w-full" oninput="updatePricing()">
-                            <div class="flex justify-between text-sm">
-                                <span>1</span>
-                                <span id="displays-value" class="font-bold text-amber-400">1</span>
-                                <span>50</span>
-                            </div>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up">
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Starter</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">17′ × 10′</span>
+                        <span class="text-white/50 text-sm">170 sq ft</span>
                     </div>
-
-                    <div class="mt-8 p-6 bg-gradient-to-r from-amber-600/20 to-amber-800/20 rounded-xl">
-                        <div class="text-sm text-gray-400">Display Details</div>
-                        <div class="text-lg mb-2">
-                            <span id="total-sqft" class="font-bold">24</span> sq ft ×
-                            <span id="price-per-sqft" class="font-bold">$210</span>/sq ft ×
-                            <span id="num-displays-show" class="font-bold">1</span> display(s)
-                        </div>
-                        <div class="text-sm text-gray-400">Total Investment</div>
-                        <div class="text-4xl font-bold gradient-text" id="total-price-calc">$4,320</div>
-                        <div class="text-sm text-amber-400 mt-2">Financing available from $99/month</div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$45,000</div>
                     </div>
-                </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 17 / 10;"></div>
+                    <p class="text-white/70 text-sm mb-4">Entry-level videoboard sized for practice fields, small gyms, and community programs.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
 
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-6">Your Investment Details</h3>
-
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white/5 rounded-lg">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-400">Display Type</span>
-                                <span class="font-bold" id="display-type-summary">Indoor</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-400">Display Size</span>
-                                <span class="font-bold"><span id="size-summary">6' × 4'</span></span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-400">Square Footage</span>
-                                <span class="font-bold"><span id="sqft-summary">24</span> sq ft</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Number of Displays</span>
-                                <span class="font-bold" id="displays-summary">1</span>
-                            </div>
-                        </div>
-
-                        <div class="p-6 bg-gradient-to-r from-amber-600/20 to-amber-800/20 rounded-xl">
-                            <div class="text-sm text-gray-400 mb-2">Estimated Investment</div>
-                            <div class="text-4xl font-bold gradient-text mb-4" id="total-price">$4,320</div>
-                            <div class="text-sm text-amber-400">Financing available from $99/month</div>
-                        </div>
-
-                        <div class="space-y-3 text-sm">
-                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Professional installation included</span></div>
-                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Multi-year warranty</span></div>
-                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>24/7 technical support</span></div>
-                            <div class="flex items-center"><span class="text-amber-400 mr-2">✓</span><span>Free software updates</span></div>
-                        </div>
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Standard</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">24′ × 14′</span>
+                        <span class="text-white/50 text-sm">336 sq ft</span>
                     </div>
-                </div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$72,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 24 / 14;"></div>
+                    <p class="text-white/70 text-sm mb-4">Mid-size display ideal for high school baseball, soccer, and indoor multi-sport venues.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
+
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Pro</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">27′ × 14′</span>
+                        <span class="text-white/50 text-sm">378 sq ft</span>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$102,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 27 / 14;"></div>
+                    <p class="text-white/70 text-sm mb-4">High school football and multi-sport programs that want true broadcast-quality presence.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
+
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Elite</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">30′ × 17′</span>
+                        <span class="text-white/50 text-sm">510 sq ft</span>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$150,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 30 / 17;"></div>
+                    <p class="text-white/70 text-sm mb-4">Large high schools and small college stadiums looking for a flagship videoboard.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
+
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Premier</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">40′ × 20′</span>
+                        <span class="text-white/50 text-sm">800 sq ft</span>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$240,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 40 / 20;"></div>
+                    <p class="text-white/70 text-sm mb-4">College-grade videoboard with the visual scale to anchor a Friday-night atmosphere.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
+
+                <a href="/quote" class="dark-card rounded-2xl p-7 block">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Stadium</div>
+                    <div class="flex items-baseline gap-3 mb-2">
+                        <span class="text-3xl font-bold">50′ × 23′</span>
+                        <span class="text-white/50 text-sm">1,150 sq ft</span>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
+                        <div class="text-2xl font-bold gradient-text">$345,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-700/10 rounded-lg mb-4 border border-white/10" style="aspect-ratio: 50 / 23;"></div>
+                    <p class="text-white/70 text-sm mb-4">Top-tier college and professional venues — full stadium spectacle, end to end.</p>
+                    <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
+                </a>
             </div>
 
-            <div class="text-center mt-10">
-                <a href="quote.html" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
+            <div class="text-center mt-12">
+                <a href="/quote" class="cta-button px-10 py-4 rounded-full text-lg font-bold pulse inline-block">
                     Get Your Free Quote &rarr;
                 </a>
-                <p class="text-sm text-gray-400 mt-3">Talk to our experts for volume discounts and special pricing</p>
+                <p class="text-sm text-white/60 mt-3">Custom sizes also available — talk to our team about your venue.</p>
             </div>
         </div>
     </section>
@@ -494,7 +498,7 @@
             <div class="grid md:grid-cols-3 gap-6 mb-10">
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="images/projects/coppellfball.jpg" class="w-full h-full object-cover" alt="Coppell ISD" style="object-position: center 5%">
+                        <img width="900" height="1200" loading="lazy" decoding="async" src="images/projects/coppellfball.jpg" class="w-full h-full object-cover" alt="Coppell ISD" style="object-position: center 5%">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Football</span>
@@ -505,7 +509,7 @@
 
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="images/projects/coppellbball.jpeg" class="w-full h-full object-cover" alt="Coppell ISD Basketball">
+                        <img width="1125" height="930" loading="lazy" decoding="async" src="images/projects/coppellbball.jpeg" class="w-full h-full object-cover" alt="Coppell ISD Basketball">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Basketball</span>
@@ -516,7 +520,7 @@
 
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="images/projects/rdalebaseball.jpeg" class="w-full h-full object-cover" alt="Riverdale Baseball" style="object-position: center 30%">
+                        <img width="1200" height="1083" loading="lazy" decoding="async" src="images/projects/rdalebaseball.jpeg" class="w-full h-full object-cover" alt="Riverdale Baseball" style="object-position: center 30%">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Baseball</span>
@@ -526,7 +530,7 @@
                 </div>
             </div>
 
-            <a href="projects.html" class="cta-outline px-8 py-3 rounded-full font-semibold inline-block text-lg">
+            <a href="/projects" class="cta-outline px-8 py-3 rounded-full font-semibold inline-block text-lg">
                 View All Projects &rarr;
             </a>
         </div>
@@ -559,7 +563,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-10">
                 <div>
-                    <img src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 mb-4">
+                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400 text-sm">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -568,22 +572,23 @@
                         <li><a href="#products" class="hover:text-white transition-colors">LED Scoreboards</a></li>
                         <li><a href="#products" class="hover:text-white transition-colors">Indoor Displays</a></li>
                         <li><a href="#products" class="hover:text-white transition-colors">Outdoor Displays</a></li>
-                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing Calculator</a></li>
+                        <li><a href="#packages" class="hover:text-white transition-colors">Display Packages</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Company</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="projects.html" class="hover:text-white transition-colors">Our Projects</a></li>
-                        <li><a href="quote.html" class="hover:text-white transition-colors">Get a Quote</a></li>
+                        <li><a href="/projects" class="hover:text-white transition-colors">Our Projects</a></li>
+                        <li><a href="/quote" class="hover:text-white transition-colors">Get a Quote</a></li>
                     </ul>
                 </div>
                 <div id="contact">
                     <h4 class="font-semibold mb-4">Contact</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="tel:+16158157685" class="hover:text-white transition-colors">(615) 815-7685</a></li>
                         <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
                         <li>Smithville, TN</li>
-                        <li><a href="quote.html" class="hover:text-white transition-colors">Request a Quote</a></li>
+                        <li><a href="/quote" class="hover:text-white transition-colors">Request a Quote</a></li>
                     </ul>
                 </div>
             </div>
@@ -653,31 +658,6 @@
             setTimeout(() => { button.textContent = originalText; button.disabled = false; }, 3000);
         }
 
-        // Pricing Calculator
-        function updatePricing() {
-            const screenType = document.querySelector('input[name="screenType"]:checked').value;
-            const pricePerSqFt = 210;
-            const width = parseFloat(document.getElementById('screenWidth').value);
-            const height = parseFloat(document.getElementById('screenHeight').value);
-            const numDisplays = parseInt(document.getElementById('numDisplays').value);
-            const sqFt = width * height;
-            const totalPrice = sqFt * pricePerSqFt * numDisplays;
-
-            document.getElementById('width-value').textContent = width + 'ft';
-            document.getElementById('height-value').textContent = height + 'ft';
-            document.getElementById('displays-value').textContent = numDisplays;
-            document.getElementById('total-sqft').textContent = sqFt.toFixed(1);
-            document.getElementById('price-per-sqft').textContent = '$' + pricePerSqFt;
-            document.getElementById('num-displays-show').textContent = numDisplays;
-            document.getElementById('total-price-calc').textContent = '$' + totalPrice.toLocaleString();
-            document.getElementById('display-type-summary').textContent = screenType.charAt(0).toUpperCase() + screenType.slice(1);
-            document.getElementById('size-summary').textContent = width + "' × " + height + "'";
-            document.getElementById('sqft-summary').textContent = sqFt.toFixed(1);
-            document.getElementById('displays-summary').textContent = numDisplays;
-            document.getElementById('total-price').textContent = '$' + totalPrice.toLocaleString();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() { updatePricing(); });
     </script>
 </body>
 </html>
