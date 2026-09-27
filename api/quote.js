@@ -40,7 +40,7 @@ module.exports = async function handler(req, res) {
   // Check env vars are set
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
     console.error('Missing SMTP_USER or SMTP_PASS environment variables');
-    return res.status(500).json({ error: 'Email not configured', detail: 'Missing SMTP credentials' });
+    return res.status(500).json({ error: 'Email not configured' });
   }
 
   const transporter = nodemailer.createTransport({
@@ -126,6 +126,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error('Email send error:', error.message, error.code);
-    return res.status(500).json({ error: 'Failed to send', detail: error.message });
+    return res.status(500).json({ error: 'Failed to send' });
   }
 };
