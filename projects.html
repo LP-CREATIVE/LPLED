@@ -156,13 +156,17 @@
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="text-amber-400 transition-colors">Projects</a>
@@ -176,6 +180,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
 
     <!-- Hero Section -->
     <section class="pt-28 pb-16 px-6">
@@ -222,7 +228,7 @@
                 <!-- FOOTBALL PROJECTS -->
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-football" data-sport="football">
                     <div class="project-image">
-                        <img width="900" height="1200" loading="lazy" decoding="async" src="images/projects/coppellfball.jpg" alt="Coppell ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 5%">
+                        <img width="900" height="1200" loading="lazy" decoding="async" src="images/projects/coppellfball.webp" srcset="images/projects/coppellfball-800.webp 800w, images/projects/coppellfball.webp 900w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Coppell ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 5%">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -230,7 +236,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Coppell ISD</h3>
                         <p class="text-gray-400 text-sm mb-2">50' x 25' P10 outdoor LED video board for the football stadium. Full-color display with real-time scoreboard, instant replay, and sponsor integration. Installed by our founder prior to launching LPCREATIVE.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Coppell, TX</span>
                             <span>50'W x 25'H P10</span>
                         </div>
@@ -239,7 +245,7 @@
 
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-football" data-sport="football">
                     <div class="project-image">
-                        <img width="647" height="1400" loading="lazy" decoding="async" src="images/projects/keller.jpg" alt="Keller ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0">
+                        <img width="647" height="1400" loading="lazy" decoding="async" src="images/projects/keller.webp" alt="Keller ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -247,7 +253,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Keller ISD</h3>
                         <p class="text-gray-400 text-sm mb-2">50' x 25' P10 outdoor LED video board for the football stadium. High-brightness display with game clock integration, custom team branding, and dynamic ad rotations. Installed by our founder prior to launching LPCREATIVE.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Keller, TX</span>
                             <span>50'W x 25'H P10</span>
                         </div>
@@ -256,7 +262,7 @@
 
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-football" data-sport="football">
                     <div class="project-image">
-                        <img width="1200" height="900" loading="lazy" decoding="async" src="images/projects/cedarhill.jpg" alt="Cedar Hill ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 0%">
+                        <img width="1200" height="900" loading="lazy" decoding="async" src="images/projects/cedarhill.webp" srcset="images/projects/cedarhill-800.webp 800w, images/projects/cedarhill.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Cedar Hill ISD Football LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 0%">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -264,7 +270,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Cedar Hill ISD</h3>
                         <p class="text-gray-400 text-sm mb-2">50' x 25' P10 outdoor LED video board for the football stadium. Weather-resistant IP65-rated display with live video, scoring, and revenue-generating sponsor content. Installed by our founder prior to launching LPCREATIVE.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Cedar Hill, TX</span>
                             <span>50'W x 25'H P10</span>
                         </div>
@@ -274,7 +280,7 @@
                 <!-- BASKETBALL PROJECTS -->
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-basketball" data-sport="basketball">
                     <div class="project-image">
-                        <img width="1125" height="930" loading="lazy" decoding="async" src="images/projects/coppellbball.jpeg" alt="Coppell ISD Basketball LED Scoreboard" class="w-full h-full object-cover absolute inset-0">
+                        <img width="1125" height="930" loading="lazy" decoding="async" src="images/projects/coppellbball.webp" srcset="images/projects/coppellbball-800.webp 800w, images/projects/coppellbball.webp 1125w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Coppell ISD Basketball LED Scoreboard" class="w-full h-full object-cover absolute inset-0">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -282,7 +288,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Coppell ISD</h3>
                         <p class="text-gray-400 text-sm mb-2">4-sided center-hung LED video board with sideline scorer's table display. Full game production with shot clock integration, player stats, and dynamic sponsor rotations. Installed by our founder prior to launching LPCREATIVE.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Coppell, TX</span>
                             <span>4x4 Center-Hung</span>
                         </div>
@@ -299,7 +305,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Smith County High School</h3>
                         <p class="text-gray-400 text-sm mb-2">Indoor gymnasium LED video board with real-time scoreboard, player stats display, and sponsor integration. Crystal-clear resolution for an elevated game day experience.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Carthage, TN</span>
                             <span>Indoor LED</span>
                         </div>
@@ -309,7 +315,7 @@
                 <!-- BASEBALL PROJECTS -->
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-baseball" data-sport="baseball">
                     <div class="project-image">
-                        <img width="1200" height="1083" loading="lazy" decoding="async" src="images/projects/rdalebaseball.jpeg" alt="Riverdale High School Baseball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 30%">
+                        <img width="1200" height="1083" loading="lazy" decoding="async" src="images/projects/rdalebaseball.webp" srcset="images/projects/rdalebaseball-800.webp 800w, images/projects/rdalebaseball.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Riverdale High School Baseball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 30%">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -317,7 +323,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Riverdale High School</h3>
                         <p class="text-gray-400 text-sm mb-2">Outfield LED scoreboard with full lineup display, pitch count, inning-by-inning scoring, and batting order. Integrated sponsor advertising panels.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Murfreesboro, TN</span>
                             <span>Outdoor LED</span>
                         </div>
@@ -326,7 +332,7 @@
 
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-baseball" data-sport="baseball">
                     <div class="project-image">
-                        <img width="1400" height="1050" loading="lazy" decoding="async" src="images/projects/siegelbaseaball.jpeg" alt="Siegel High School Baseball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="transform: scale(1.8) translateX(-15%)">
+                        <img width="1400" height="1050" loading="lazy" decoding="async" src="images/projects/siegelbaseaball.webp" srcset="images/projects/siegelbaseaball-800.webp 800w, images/projects/siegelbaseaball.webp 1400w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Siegel High School Baseball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="transform: scale(1.8) translateX(-15%)">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -334,7 +340,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Siegel High School</h3>
                         <p class="text-gray-400 text-sm mb-2">Baseball field LED video board with live scoreboard, player introductions, and walk-up graphics. Full-color outdoor display with sun-readable brightness and sponsor integration.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Murfreesboro, TN</span>
                             <span>Outdoor LED</span>
                         </div>
@@ -344,7 +350,7 @@
                 <!-- SOFTBALL PROJECTS -->
                 <div class="glass-card rounded-2xl overflow-hidden project-card sport-softball" data-sport="softball">
                     <div class="project-image">
-                        <img width="1050" height="1400" loading="lazy" decoding="async" src="images/projects/rdalesoftball.jpeg" alt="Riverdale High School Softball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 30%; transform: scale(1.2)">
+                        <img width="1050" height="1400" loading="lazy" decoding="async" src="images/projects/rdalesoftball.webp" srcset="images/projects/rdalesoftball-800.webp 800w, images/projects/rdalesoftball.webp 1050w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" alt="Riverdale High School Softball LED Scoreboard" class="w-full h-full object-cover absolute inset-0" style="object-position: center 30%; transform: scale(1.2)">
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-3">
@@ -352,7 +358,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Riverdale High School</h3>
                         <p class="text-gray-400 text-sm mb-2">Softball field LED scoreboard with full game stats, lineup rotation, and sponsor integration. Bright outdoor display visible in all lighting conditions.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Murfreesboro, TN</span>
                             <span>Outdoor LED</span>
                         </div>
@@ -370,7 +376,7 @@
                         </div>
                         <h3 class="text-lg font-bold mb-1">Smith County High School</h3>
                         <p class="text-gray-400 text-sm mb-2">Soccer field LED scoreboard with game clock, score, half tracking, and player card displays. Durable outdoor installation with wireless controller.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center justify-between text-sm text-gray-400">
                             <span>Carthage, TN</span>
                             <span>Outdoor LED</span>
                         </div>
@@ -407,11 +413,11 @@
                 <p class="mb-4">A football videoboard and a baseball board are not the same product at different sizes. Football is a clock, a score, and a large video window read from a hundred yards away. Baseball carries a batting order, pitch count, balls and strikes, outs, and inning-by-inning line scoring at once, frequently with the sun low behind it. A gym display sits fifteen feet from the front row, where pixel pitch that looks fine outdoors reads as visibly blocky.</p>
                 <p>We wrote a page on each so you can see what actually drives cost and specification before you request a quote:</p>
                 <ul class="list-disc pl-6 space-y-2 mt-4">
-                    <li><a href="/football-scoreboards" class="text-amber-400 hover:text-amber-300 transition-colors">Football scoreboards and stadium video boards</a> &mdash; sizing from the farthest seat, pixel pitch, structure and wind load</li>
-                    <li><a href="/baseball-softball-scoreboards" class="text-amber-400 hover:text-amber-300 transition-colors">Baseball and softball scoreboards</a> &mdash; information density, sun readability, outfield placement</li>
-                    <li><a href="/basketball-video-boards" class="text-amber-400 hover:text-amber-300 transition-colors">Basketball video boards</a> &mdash; center-hung versus end wall, structural load, shot clock integration</li>
-                    <li><a href="/led-video-walls" class="text-amber-400 hover:text-amber-300 transition-colors">LED video walls</a> &mdash; indoor pitch, churches and event venues, why not a projector</li>
-                    <li><a href="/led-scoreboards-middle-tennessee" class="text-amber-400 hover:text-amber-300 transition-colors">Middle Tennessee coverage</a> &mdash; where our boards are and why proximity matters after the install</li>
+                    <li><a href="/football-scoreboards" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Football scoreboards and stadium video boards</a> &mdash; sizing from the farthest seat, pixel pitch, structure and wind load</li>
+                    <li><a href="/baseball-softball-scoreboards" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Baseball and softball scoreboards</a> &mdash; information density, sun readability, outfield placement</li>
+                    <li><a href="/basketball-video-boards" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Basketball video boards</a> &mdash; center-hung versus end wall, structural load, shot clock integration</li>
+                    <li><a href="/led-video-walls" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">LED video walls</a> &mdash; indoor pitch, churches and event venues, why not a projector</li>
+                    <li><a href="/led-scoreboards-middle-tennessee" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Middle Tennessee coverage</a> &mdash; where our boards are and why proximity matters after the install</li>
                 </ul>
             </div>
 
@@ -438,12 +444,14 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -529,5 +537,8 @@
             }
         });
     </script>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

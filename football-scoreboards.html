@@ -92,13 +92,17 @@
         .prose ul { margin: 0 0 1rem 1.5rem; }
         .prose li { margin-bottom: 0.5rem; }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
@@ -112,6 +116,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
 
     <section class="pt-32 pb-16 px-6">
         <div class="max-w-4xl mx-auto">
@@ -129,7 +135,7 @@
             <p>A football videoboard is the largest single purchase most athletic programs ever make, and the specification decisions that drive its cost are made before anyone talks price. This page covers how those decisions actually work, so you can walk into a board meeting with a realistic number instead of a brochure.</p>
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Sizing: start from the far seat</h2>
             <p>The right size comes from viewing distance. Pick the seat farthest from where the board will sit, and size so that a spectator there can comfortably read the game clock and see a replay. Undersizing is the most common regret we hear about &mdash; a board that looks enormous on the ground reads as small from the top row of the visitor stands.</p>
-            <p>Six packaged sizes cover most football installations, from an entry-level board for a practice field up to a full stadium display. Each one is listed with its dimensions, its square footage and a starting price on our <a href="/#packages" class="text-amber-400 hover:text-amber-300 transition-colors">Display Packages</a> section &mdash; use it to build a realistic budget before you speak to anyone, including us. Custom sizes are available when none of the six is right for the venue.</p>
+            <p>Six packaged sizes cover most football installations, from an entry-level board for a practice field up to a full stadium display. Each one is listed with its dimensions, its square footage and a starting price on our <a href="/#packages" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Display Packages</a> section &mdash; use it to build a realistic budget before you speak to anyone, including us. Custom sizes are available when none of the six is right for the venue.</p>
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Pixel pitch, in plain terms</h2>
             <p>Pixel pitch is the distance between LEDs, measured in millimeters. A P10 panel has ten millimeters between pixels. Tighter pitch means a sharper image up close and a higher cost per square foot.</p>
             <p>For outdoor football, P10 is the workhorse. Spectators sit far enough away that a tighter pitch buys you resolution nobody in the stands can resolve, while costing real money. The three 50&prime; &times; 25&prime; stadium boards our founder installed at Coppell ISD, Keller ISD, and Cedar Hill ISD before launching LPCREATIVE are all P10 for exactly that reason. Save the fine pitch for indoor gyms, where the front row is fifteen feet away.</p>
@@ -166,11 +172,13 @@
         </div>
     </section>
 
+    </main>
+
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN &mdash; serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -207,5 +215,8 @@
             </div>
         </div>
     </footer>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

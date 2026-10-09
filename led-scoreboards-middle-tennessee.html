@@ -92,13 +92,17 @@
         .prose ul { margin: 0 0 1rem 1.5rem; }
         .prose li { margin-bottom: 0.5rem; }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
@@ -112,6 +116,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
 
     <section class="pt-32 pb-16 px-6">
         <div class="max-w-4xl mx-auto">
@@ -143,7 +149,7 @@
             <p>Most of our customers are public school districts and booster clubs, which means quotes have to survive a board meeting. We itemize accordingly: display, structure, electrical, installation labor, and control software and training as separate lines, so a project can be presented, questioned, and adjusted without going back to square one.</p>
             <p>Booster-funded projects &mdash; common for baseball, softball, and soccer &mdash; often need a number that a fundraising committee can work toward over a season. Tell us that up front and we will scope it in phases rather than handing you one large figure.</p>
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">What it costs</h2>
-            <p>Six packaged sizes cover most Middle Tennessee high school projects, from an entry-level board through a full stadium display, each listed with dimensions, square footage and a starting price on our <a href="/#packages" class="text-amber-400 hover:text-amber-300 transition-colors">Display Packages</a> section. Use it to build a realistic budget before you call anyone &mdash; including us.</p>
+            <p>Six packaged sizes cover most Middle Tennessee high school projects, from an entry-level board through a full stadium display, each listed with dimensions, square footage and a starting price on our <a href="/#packages" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Display Packages</a> section. Use it to build a realistic budget before you call anyone &mdash; including us.</p>
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Getting started</h2>
             <p>Call <a href="tel:+16158157685" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">(615) 815-7685</a> or request a quote online. Tell us the venue, the farthest seat from where the board will go, and the season you are aiming at. If the timeline is not achievable we will say so rather than take the deposit.</p>
 
@@ -161,11 +167,13 @@
         </div>
     </section>
 
+    </main>
+
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN &mdash; serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -202,5 +210,8 @@
             </div>
         </div>
     </footer>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

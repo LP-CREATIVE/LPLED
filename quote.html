@@ -134,6 +134,10 @@
             background: #111827;
         }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body class="animated-gradient-bg">
     <div id="top"></div>
@@ -142,7 +146,7 @@
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
@@ -153,6 +157,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
     
     <!-- Quote Form Section -->
     <section class="min-h-screen pt-24 pb-16 px-6">
@@ -176,24 +182,24 @@
                     <h2 class="text-2xl font-bold mb-6 gradient-text">Contact Information</h2>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Full Name *</label>
-                            <input type="text" name="name" required class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-name" class="block text-sm text-gray-400 mb-2">Full Name *</label>
+                            <input type="text" id="q-name" name="name" required class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Email Address *</label>
-                            <input type="email" name="email" required class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-email" class="block text-sm text-gray-400 mb-2">Email Address *</label>
+                            <input type="email" id="q-email" name="email" required class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Phone Number *</label>
-                            <input type="tel" name="phone" required class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-phone" class="block text-sm text-gray-400 mb-2">Phone Number *</label>
+                            <input type="tel" id="q-phone" name="phone" required class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Company Name</label>
-                            <input type="text" name="company" class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-company" class="block text-sm text-gray-400 mb-2">Company Name</label>
+                            <input type="text" id="q-company" name="company" class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm text-gray-400 mb-2">Address</label>
-                            <input type="text" name="address" class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-address" class="block text-sm text-gray-400 mb-2">Address</label>
+                            <input type="text" id="q-address" name="address" class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                     </div>
                 </div>
@@ -204,8 +210,8 @@
                     <div class="space-y-6">
                         <!-- Budget Range (First Question) -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Budget Range *</label>
-                            <select name="budget" required class="form-select w-full px-4 py-3 rounded-lg">
+                            <label for="q-budget" class="block text-sm text-gray-400 mb-2">Budget Range *</label>
+                            <select id="q-budget" name="budget" required class="form-select w-full px-4 py-3 rounded-lg">
                                 <option value="">Select your budget range</option>
                                 <option value="Under $10,000">Under $10,000</option>
                                 <option value="$10,000 - $25,000">$10,000 - $25,000</option>
@@ -234,19 +240,19 @@
                         <!-- Dimensions -->
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm text-gray-400 mb-2">Display Width (feet) *</label>
-                                <input type="number" name="width" min="1" max="100" step="0.5" required class="form-input w-full px-4 py-3 rounded-lg">
+                                <label for="q-width" class="block text-sm text-gray-400 mb-2">Display Width (feet) *</label>
+                                <input type="number" id="q-width" name="width" min="1" max="100" step="0.5" required class="form-input w-full px-4 py-3 rounded-lg">
                             </div>
                             <div>
-                                <label class="block text-sm text-gray-400 mb-2">Display Height (feet) *</label>
-                                <input type="number" name="height" min="1" max="50" step="0.5" required class="form-input w-full px-4 py-3 rounded-lg">
+                                <label for="q-height" class="block text-sm text-gray-400 mb-2">Display Height (feet) *</label>
+                                <input type="number" id="q-height" name="height" min="1" max="50" step="0.5" required class="form-input w-full px-4 py-3 rounded-lg">
                             </div>
                         </div>
                         
                         <!-- Number of Displays -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Number of Displays *</label>
-                            <input type="number" name="numDisplays" min="1" max="100" value="1" required class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-numDisplays" class="block text-sm text-gray-400 mb-2">Number of Displays *</label>
+                            <input type="number" id="q-numDisplays" name="numDisplays" min="1" max="100" value="1" required class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         
                         <!-- Single or Double Sided -->
@@ -266,14 +272,14 @@
                         
                         <!-- Installation Location -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Installation Location/Venue Type *</label>
-                            <input type="text" name="location" required placeholder="e.g., Sports stadium, retail store, church, etc." class="form-input w-full px-4 py-3 rounded-lg">
+                            <label for="q-location" class="block text-sm text-gray-400 mb-2">Installation Location/Venue Type *</label>
+                            <input type="text" id="q-location" name="location" required placeholder="e.g., Sports stadium, retail store, church, etc." class="form-input w-full px-4 py-3 rounded-lg">
                         </div>
                         
                         <!-- Content Type -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Content Type *</label>
-                            <select name="contentType" required class="form-select w-full px-4 py-3 rounded-lg">
+                            <label for="q-contentType" class="block text-sm text-gray-400 mb-2">Content Type *</label>
+                            <select id="q-contentType" name="contentType" required class="form-select w-full px-4 py-3 rounded-lg">
                                 <option value="">Select content type</option>
                                 <option value="advertising">Advertising/Marketing</option>
                                 <option value="sports">Sports/Scoreboards</option>
@@ -288,8 +294,8 @@
                         
                         <!-- Timeline -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Project Timeline/Deadline *</label>
-                            <select name="timeline" required class="form-select w-full px-4 py-3 rounded-lg">
+                            <label for="q-timeline" class="block text-sm text-gray-400 mb-2">Project Timeline/Deadline *</label>
+                            <select id="q-timeline" name="timeline" required class="form-select w-full px-4 py-3 rounded-lg">
                                 <option value="">Select timeline</option>
                                 <option value="asap">ASAP</option>
                                 <option value="1month">Within 1 month</option>
@@ -307,8 +313,8 @@
                     <div class="space-y-6">
                         <!-- How they heard about you -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">How did you hear about us?</label>
-                            <select name="source" class="form-select w-full px-4 py-3 rounded-lg">
+                            <label for="q-source" class="block text-sm text-gray-400 mb-2">How did you hear about us?</label>
+                            <select id="q-source" name="source" class="form-select w-full px-4 py-3 rounded-lg">
                                 <option value="">Please select</option>
                                 <option value="google">Google Search</option>
                                 <option value="social">Social Media</option>
@@ -321,8 +327,8 @@
                         
                         <!-- Project Description -->
                         <div>
-                            <label class="block text-sm text-gray-400 mb-2">Project Description/Special Requirements</label>
-                            <textarea name="description" rows="5" placeholder="Please provide any additional details about your project..." class="form-input w-full px-4 py-3 rounded-lg"></textarea>
+                            <label for="q-description" class="block text-sm text-gray-400 mb-2">Project Description/Special Requirements</label>
+                            <textarea id="q-description" name="description" rows="5" placeholder="Please provide any additional details about your project..." class="form-input w-full px-4 py-3 rounded-lg"></textarea>
                         </div>
                         
                         <!-- Preferred Contact Method -->
@@ -351,7 +357,7 @@
                     <p class="text-sm text-gray-400 mt-4">
                         We'll review your information and send you a detailed quote within 24 hours
                     </p>
-                    <p class="text-xs text-gray-500 mt-2">
+                    <p class="text-xs text-gray-400 mt-2">
                         <a href="/privacy" class="hover:text-white underline">Privacy Policy</a> &middot; <a href="/terms" class="hover:text-white underline">Terms</a>
                     </p>
                 </div>
@@ -369,7 +375,7 @@
 
                 <div>
                     <h2 class="text-3xl font-bold mb-5 gradient-text">What drives the price</h2>
-                    <p class="mb-4">Physical size is the largest factor &mdash; LED displays are priced by the square foot. Our six packaged sizes are listed with dimensions, square footage and starting prices on the <a href="/#packages" class="text-amber-400 hover:text-amber-300 transition-colors">Display Packages</a> section, which is the place to sanity-check a budget before you ever talk to us.</p>
+                    <p class="mb-4">Physical size is the largest factor &mdash; LED displays are priced by the square foot. Our six packaged sizes are listed with dimensions, square footage and starting prices on the <a href="/#packages" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Display Packages</a> section, which is the place to sanity-check a budget before you ever talk to us.</p>
                     <p class="mb-4">After size, the things that move a quote most are:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4">
                         <li><strong class="text-white">Pixel pitch</strong> — how close the LEDs sit together. Tighter pitch means a sharper picture at close viewing distances, and costs more per square foot. A stadium board seen from 150 feet does not need the same pitch as a gym board seen from 40 feet.</li>
@@ -406,6 +412,8 @@
         </div>
     </section>
     
+    </main>
+
     <!-- Success Modal (Hidden by default) -->
     <div id="successModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
         <div class="glass-card p-8 rounded-3xl max-w-md mx-6 text-center">
@@ -414,7 +422,7 @@
             <p class="text-gray-300 mb-6">
                 Thank you for your interest in LPLED! We've received your information and will send you a detailed quote within 24 hours.
             </p>
-            <button onclick="window.location.href='index.html'" class="glow-button px-8 py-3 rounded-full text-white font-semibold">
+            <button onclick="window.location.href='/'" class="glow-button px-8 py-3 rounded-full text-white font-semibold">
                 Back to Homepage
             </button>
         </div>
@@ -481,5 +489,8 @@
             });
         });
     </script>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

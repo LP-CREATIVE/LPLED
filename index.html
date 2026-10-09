@@ -45,6 +45,7 @@
         "@type": "PostalAddress",
         "addressLocality": "Smithville",
         "addressRegion": "TN",
+        "postalCode": "37166",
         "addressCountry": "US"
       },
       "geo": {
@@ -52,15 +53,17 @@
         "latitude": 35.9598,
         "longitude": -85.8144
       },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
-      ],
       "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Rutherford County, TN" },
+        { "@type": "AdministrativeArea", "name": "DeKalb County, TN" },
+        { "@type": "AdministrativeArea", "name": "Smith County, TN" },
+        { "@type": "AdministrativeArea", "name": "Wilson County, TN" },
+        { "@type": "AdministrativeArea", "name": "Cannon County, TN" },
+        { "@type": "AdministrativeArea", "name": "Warren County, TN" },
+        { "@type": "AdministrativeArea", "name": "Putnam County, TN" },
+        { "@type": "City", "name": "Nashville, TN" },
+        { "@type": "City", "name": "Murfreesboro, TN" },
+        { "@type": "City", "name": "Knoxville, TN" },
         { "@type": "State", "name": "Tennessee" },
         { "@type": "Country", "name": "United States" }
       ],
@@ -196,6 +199,10 @@
             accent-color: #f75f3f;
         }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
 
@@ -203,7 +210,7 @@
     <nav class="fixed top-0 w-full bg-[#1f2937]/95 backdrop-blur-md border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="#top" class="hover:text-white transition-colors" onclick="window.scrollTo(0,0); return false;">Home</a>
                     <a href="#products" class="hover:text-white transition-colors">Products</a>
@@ -221,16 +228,18 @@
         </div>
     </nav>
 
+    <main id="main">
+
     <!-- Hero Section -->
     <section class="relative flex items-center justify-center mt-[72px] overflow-hidden" style="min-height: 75vh;">
-        <div id="hero-slideshow" class="absolute inset-0 z-0">
-            <img width="900" height="1200" src="images/projects/coppellfball.jpg" class="hero-slide active" alt="" style="object-position: center 25%">
-            <img width="647" height="1400" src="images/projects/keller.jpg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img width="1200" height="900" src="images/projects/cedarhill.jpg" class="hero-slide" alt="" style="object-position: center 25%">
-            <img width="1125" height="930" src="images/projects/coppellbball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img width="1200" height="1083" src="images/projects/rdalebaseball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img width="1400" height="1050" src="images/projects/siegelbaseaball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
-            <img width="1050" height="1400" src="images/projects/rdalesoftball.jpeg" class="hero-slide" alt="" style="object-position: center 45%">
+        <div id="hero-slideshow" class="absolute inset-0 z-0" aria-hidden="true">
+            <img width="900" height="1200" src="images/projects/coppellfball.webp" srcset="images/projects/coppellfball-800.webp 800w, images/projects/coppellfball.webp 900w" sizes="100vw" fetchpriority="high" class="hero-slide active" alt="Coppell ISD football LED video scoreboard" style="object-position: center 25%">
+            <img width="647" height="1400" data-src="images/projects/keller.webp" class="hero-slide" alt="Keller ISD football stadium LED video board" style="object-position: center 45%">
+            <img width="1200" height="900" data-src="images/projects/cedarhill.webp" data-srcset="images/projects/cedarhill-800.webp 800w, images/projects/cedarhill.webp 1200w" sizes="100vw" class="hero-slide" alt="Cedar Hill ISD football LED video board" style="object-position: center 25%">
+            <img width="1125" height="930" data-src="images/projects/coppellbball.webp" data-srcset="images/projects/coppellbball-800.webp 800w, images/projects/coppellbball.webp 1125w" sizes="100vw" class="hero-slide" alt="Coppell ISD basketball LED video board" style="object-position: center 45%">
+            <img width="1200" height="1083" data-src="images/projects/rdalebaseball.webp" data-srcset="images/projects/rdalebaseball-800.webp 800w, images/projects/rdalebaseball.webp 1200w" sizes="100vw" class="hero-slide" alt="Riverdale High School baseball LED scoreboard" style="object-position: center 45%">
+            <img width="1400" height="1050" data-src="images/projects/siegelbaseaball.webp" data-srcset="images/projects/siegelbaseaball-800.webp 800w, images/projects/siegelbaseaball.webp 1400w" sizes="100vw" class="hero-slide" alt="Siegel High School baseball LED scoreboard" style="object-position: center 45%">
+            <img width="1050" height="1400" data-src="images/projects/rdalesoftball.webp" data-srcset="images/projects/rdalesoftball-800.webp 800w, images/projects/rdalesoftball.webp 1050w" sizes="100vw" class="hero-slide" alt="Riverdale High School softball LED scoreboard" style="object-position: center 45%">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-[#1f2937]/50 to-black/70 z-[1]"></div>
 
@@ -261,7 +270,7 @@
     <section id="products" class="py-20 px-6 bg-white text-gray-900">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Our Products</h2>
-            <p class="text-center text-gray-400 mb-14 text-lg max-w-2xl mx-auto">From outdoor stadium scoreboards to indoor video walls, we have the perfect LED solution for your needs.</p>
+            <p class="text-center text-gray-500 mb-14 text-lg max-w-2xl mx-auto">From outdoor stadium scoreboards to indoor video walls, we have the perfect LED solution for your needs.</p>
 
             <div class="grid md:grid-cols-3 gap-8 fade-up">
                 <a href="/quote" class="product-card rounded-2xl overflow-hidden bg-white border border-gray-100 block">
@@ -399,7 +408,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$45,000</div>
                     </div>
-                    <img width="900" height="529" loading="lazy" decoding="async" src="images/packages/starter-advertise-here.jpg" alt="17ft by 10ft outdoor LED videoboard beside a ball field running an &quot;Advertise Here&quot; sponsorship graphic with an owl mascot" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 17 / 10;">
+                    <img width="900" height="529" loading="lazy" decoding="async" src="images/packages/starter-advertise-here-720.webp" srcset="images/packages/starter-advertise-here-720.webp 720w, images/packages/starter-advertise-here.webp 900w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="17ft by 10ft outdoor LED videoboard beside a ball field running an &quot;Advertise Here&quot; sponsorship graphic with an owl mascot" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 17 / 10;">
                     <p class="text-white/70 text-sm mb-4">Entry-level videoboard sized for practice fields, small gyms, and community programs.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -414,7 +423,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$90,000</div>
                     </div>
-                    <img width="866" height="505" loading="lazy" decoding="async" src="images/packages/standard-gordonsville.jpg" alt="24ft by 14ft LED videoboard at a Gordonsville football game, showing live score and down and distance with sponsor panels either side of the video window" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 24 / 14;">
+                    <img width="866" height="505" loading="lazy" decoding="async" src="images/packages/standard-gordonsville-720.webp" srcset="images/packages/standard-gordonsville-720.webp 720w, images/packages/standard-gordonsville.webp 866w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="24ft by 14ft LED videoboard at a Gordonsville football game, showing live score and down and distance with sponsor panels either side of the video window" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 24 / 14;">
                     <p class="text-white/70 text-sm mb-4">Mid-size display ideal for high school baseball, soccer, and indoor multi-sport venues.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -429,7 +438,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$102,000</div>
                     </div>
-                    <img width="1000" height="519" loading="lazy" decoding="async" src="images/packages/pro-siegel-baseball.jpg" alt="27ft by 14ft LED videoboard at Siegel High School baseball at night, showing a batter card, pitch counts, balls and strikes and a full inning-by-inning line score" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 27 / 14;">
+                    <img width="1000" height="519" loading="lazy" decoding="async" src="images/packages/pro-siegel-baseball-720.webp" srcset="images/packages/pro-siegel-baseball-720.webp 720w, images/packages/pro-siegel-baseball.webp 1000w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="27ft by 14ft LED videoboard at Siegel High School baseball at night, showing a batter card, pitch counts, balls and strikes and a full inning-by-inning line score" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 27 / 14;">
                     <p class="text-white/70 text-sm mb-4">High school football and multi-sport programs that want true broadcast-quality presence.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -444,7 +453,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$150,000</div>
                     </div>
-                    <img width="1200" height="680" loading="lazy" decoding="async" src="images/packages/elite-richland-raiders.jpg" alt="30ft by 17ft LED videoboard at The Reservation, Richland School, showing the Raiders' TSSAA Class 1A state championship graphic with the team below" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 30 / 17;">
+                    <img width="1200" height="680" loading="lazy" decoding="async" src="images/packages/elite-richland-raiders-720.webp" srcset="images/packages/elite-richland-raiders-720.webp 720w, images/packages/elite-richland-raiders.webp 1200w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="30ft by 17ft LED videoboard at The Reservation, Richland School, showing the Raiders' TSSAA Class 1A state championship graphic with the team below" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 30 / 17;">
                     <p class="text-white/70 text-sm mb-4">Large high schools and small college stadiums looking for a flagship videoboard.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -459,7 +468,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$240,000</div>
                     </div>
-                    <img width="1000" height="500" loading="lazy" decoding="async" src="images/packages/premier-cedar-hill.jpg" alt="40ft by 20ft LED videoboard at Cedar Hill ISD Longhorn Stadium, showing the game score and down and distance with full-height sponsor panels either side" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 40 / 20;">
+                    <img width="1000" height="500" loading="lazy" decoding="async" src="images/packages/premier-cedar-hill-720.webp" srcset="images/packages/premier-cedar-hill-720.webp 720w, images/packages/premier-cedar-hill.webp 1000w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="40ft by 20ft LED videoboard at Cedar Hill ISD Longhorn Stadium, showing the game score and down and distance with full-height sponsor panels either side" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 40 / 20;">
                     <p class="text-white/70 text-sm mb-4">College-grade videoboard with the visual scale to anchor a Friday-night atmosphere.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -474,7 +483,7 @@
                         <span class="text-xs text-white/50 uppercase tracking-wider">Starting at</span>
                         <div class="text-2xl font-bold gradient-text">$345,000</div>
                     </div>
-                    <img width="1000" height="460" loading="lazy" decoding="async" src="images/packages/stadium-keller-ad-units.jpg" alt="50ft by 23ft LED videoboard at Keller ISD demonstrating single-ad-unit sponsor layouts, with separate banner positions running alongside the main video window" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 50 / 23;">
+                    <img width="1000" height="460" loading="lazy" decoding="async" src="images/packages/stadium-keller-ad-units-720.webp" srcset="images/packages/stadium-keller-ad-units-720.webp 720w, images/packages/stadium-keller-ad-units.webp 1000w" sizes="(min-width: 1024px) 351px, (min-width: 768px) 50vw, 100vw" alt="50ft by 23ft LED videoboard at Keller ISD demonstrating single-ad-unit sponsor layouts, with separate banner positions running alongside the main video window" class="w-full object-cover rounded-lg mb-4 border border-white/10" style="aspect-ratio: 50 / 23;">
                     <p class="text-white/70 text-sm mb-4">Top-tier college and professional venues — full stadium spectacle, end to end.</p>
                     <span class="text-amber-400 font-semibold text-sm">Get Quote &rarr;</span>
                 </a>
@@ -547,7 +556,7 @@
             <div class="grid md:grid-cols-3 gap-6 mb-10">
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img width="900" height="1200" loading="lazy" decoding="async" src="images/projects/coppellfball.jpg" class="w-full h-full object-cover" alt="Coppell ISD" style="object-position: center 5%">
+                        <img width="900" height="1200" loading="lazy" decoding="async" src="images/projects/coppellfball.webp" srcset="images/projects/coppellfball-800.webp 800w, images/projects/coppellfball.webp 900w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover" alt="Coppell ISD" style="object-position: center 5%">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Football</span>
@@ -558,7 +567,7 @@
 
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img width="1125" height="930" loading="lazy" decoding="async" src="images/projects/coppellbball.jpeg" class="w-full h-full object-cover" alt="Coppell ISD Basketball">
+                        <img width="1125" height="930" loading="lazy" decoding="async" src="images/projects/coppellbball.webp" srcset="images/projects/coppellbball-800.webp 800w, images/projects/coppellbball.webp 1125w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover" alt="Coppell ISD Basketball">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Basketball</span>
@@ -569,7 +578,7 @@
 
                 <div class="product-card rounded-2xl overflow-hidden bg-white">
                     <div class="h-48 relative overflow-hidden">
-                        <img width="1200" height="1083" loading="lazy" decoding="async" src="images/projects/rdalebaseball.jpeg" class="w-full h-full object-cover" alt="Riverdale Baseball" style="object-position: center 30%">
+                        <img width="1200" height="1083" loading="lazy" decoding="async" src="images/projects/rdalebaseball.webp" srcset="images/projects/rdalebaseball-800.webp 800w, images/projects/rdalebaseball.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover" alt="Riverdale Baseball" style="object-position: center 30%">
                     </div>
                     <div class="p-5 text-left">
                         <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Baseball</span>
@@ -598,7 +607,7 @@
                 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden">
                 <div class="flex flex-col sm:flex-row gap-3">
                     <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 rounded-full bg-white/20 border border-white/30 focus:border-white focus:outline-none placeholder-white/60 text-white" required>
-                    <button type="submit" class="px-8 py-3 rounded-full font-semibold bg-white text-amber-500 hover:bg-gray-100 transition-colors">
+                    <button type="submit" class="px-8 py-3 rounded-full font-semibold bg-white text-amber-700 hover:bg-gray-100 transition-colors">
                         Request Quote
                     </button>
                 </div>
@@ -607,12 +616,14 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] text-white py-14 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-10">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400 text-sm">Professional LED displays and scoreboards based in Smithville, TN — serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -653,14 +664,26 @@
     </footer>
 
     <script>
-        // Hero slideshow
+        // Hero slideshow — slide 1 loads with the page; the rest load after it,
+        // and a slide only rotates in once its image has finished downloading.
         (function() {
-            const slides = document.querySelectorAll('.hero-slide');
+            const slides = Array.from(document.querySelectorAll('.hero-slide'));
+            const loadRest = () => slides.forEach(img => {
+                if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+                if (img.dataset.src) img.src = img.dataset.src;
+            });
+            if (document.readyState === 'complete') loadRest();
+            else window.addEventListener('load', loadRest, { once: true });
             let current = 0;
             setInterval(() => {
+                let next = (current + 1) % slides.length;
+                while (next !== current && !(slides[next].currentSrc && slides[next].complete)) {
+                    next = (next + 1) % slides.length;
+                }
+                if (next === current) return;
                 slides[current].classList.remove('active');
-                current = (current + 1) % slides.length;
-                slides[current].classList.add('active');
+                slides[next].classList.add('active');
+                current = next;
             }, 4000);
         })();
 
@@ -712,5 +735,8 @@
         }
 
     </script>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

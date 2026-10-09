@@ -55,13 +55,17 @@
         .prose li { margin-bottom: 0.5rem; }
         [id] { scroll-margin-top: 6rem; }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
@@ -75,6 +79,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
 
     <section class="pt-32 pb-8 px-6">
         <div class="max-w-4xl mx-auto">
@@ -91,14 +97,14 @@
             <ul class="list-disc">
                 <li><strong class="text-white">Program.</strong> LPLED Project Updates sends text messages to clients, subcontractors, and team members about LED display projects we are working on together.</li>
                 <li><strong class="text-white">What you will receive.</strong> Messages about LED display projects you are involved in: project status and milestone updates, installation and crew scheduling, arrival, delivery, and site coordination notices, invoice and payment reminders, service and warranty updates, and replies to questions you send us. We do not send marketing or promotional text messages through this program.</li>
-                <li><strong class="text-white">How you opt in.</strong> You opt in by checking the optional text message consent box on our <a href="/updates" class="text-amber-400 hover:text-amber-300 transition-colors">Project Updates Sign-Up</a> form. The box is never pre-checked, and consent is not a condition of purchase. After you opt in, we send one confirmation text.</li>
+                <li><strong class="text-white">How you opt in.</strong> You opt in by checking the optional text message consent box on our <a href="/updates" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Project Updates Sign-Up</a> form. The box is never pre-checked, and consent is not a condition of purchase. After you opt in, we send one confirmation text.</li>
                 <li><strong class="text-white">Message frequency.</strong> Message frequency varies with project activity. Clients typically receive a few messages per month during an active project; crew and subcontractors may receive messages daily during installation weeks.</li>
                 <li><strong class="text-white">Cost.</strong> Message and data rates may apply according to your mobile plan. LPLED does not charge for text messages.</li>
                 <li><strong class="text-white">Opting out.</strong> Reply <strong class="text-white">STOP</strong> to any message to stop receiving texts. Replying STOP ends all text messages from LPLED to your number, not just one type. You will receive one final message confirming you have been unsubscribed. You may also reply STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT, REVOKE, or OPTOUT, or tell us in any other reasonable way, such as replying &ldquo;stop texting me&rdquo; or asking us by phone or email; we will honor those requests promptly. To start again, reply <strong class="text-white">START</strong> or sign up again.</li>
-                <li><strong class="text-white">Help.</strong> Reply <strong class="text-white">HELP</strong> to any message, call <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 transition-colors">(615) 815-7685</a>, or email <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 transition-colors">lucas@lpcreative.studio</a>.</li>
+                <li><strong class="text-white">Help.</strong> Reply <strong class="text-white">HELP</strong> to any message, call <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">(615) 815-7685</a>, or email <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">lucas@lpcreative.studio</a>.</li>
                 <li><strong class="text-white">Carriers.</strong> Mobile carriers are not liable for delayed or undelivered messages.</li>
                 <li><strong class="text-white">Eligibility.</strong> You must be 18 or older and the account holder of the mobile number, or have the account holder&rsquo;s permission, to opt in.</li>
-                <li><strong class="text-white">Privacy.</strong> Your mobile number and opt-in information are handled as described in our <a href="/privacy#sms" class="text-amber-400 hover:text-amber-300 transition-colors">Privacy Policy</a>. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</li>
+                <li><strong class="text-white">Privacy.</strong> Your mobile number and opt-in information are handled as described in our <a href="/privacy#sms" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Privacy Policy</a>. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</li>
             </ul>
 
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Quotes and project agreements</h2>
@@ -122,16 +128,18 @@
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Contact us</h2>
             <p>LPCREATIVE, LLC (LPLED)<br>
             Smithville, Tennessee<br>
-            Phone: <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 transition-colors">(615) 815-7685</a><br>
-            Email: <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 transition-colors">lucas@lpcreative.studio</a></p>
+            Phone: <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">(615) 815-7685</a><br>
+            Email: <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">lucas@lpcreative.studio</a></p>
         </div>
     </section>
+
+    </main>
 
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN &mdash; serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -168,5 +176,8 @@
             </div>
         </div>
     </footer>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>

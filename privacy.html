@@ -55,13 +55,17 @@
         .prose li { margin-bottom: 0.5rem; }
         [id] { scroll-margin-top: 6rem; }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
         <div class="max-w-7xl mx-auto px-6 py-1">
             <div class="flex justify-between items-center">
-                <a href="/"><img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto"></a>
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
                 <div class="hidden md:flex space-x-8 text-white/90 font-medium">
                     <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
@@ -75,6 +79,8 @@
             </div>
         </div>
     </nav>
+
+    <main id="main">
 
     <section class="pt-32 pb-8 px-6">
         <div class="max-w-4xl mx-auto">
@@ -93,7 +99,7 @@
                 <li><strong class="text-white">Project information</strong> &mdash; display type and size, venue details, budget range, timeline, site photos and measurements, and other details needed to quote, build, install, and support your project.</li>
                 <li><strong class="text-white">Communications</strong> &mdash; emails, text messages, and notes from calls related to your project.</li>
                 <li><strong class="text-white">Consent records</strong> &mdash; if you agree to receive text messages, we record the date and time, the form and page you used, your IP address and browser information, and the wording you agreed to. If you opt out, we record that too.</li>
-                <li><strong class="text-white">Basic technical data</strong> &mdash; our hosting provider automatically records standard server information such as IP address, browser type, and pages requested, which we use to keep the site secure and working.</li>
+                <li><strong class="text-white">Basic technical data</strong> &mdash; our hosting provider automatically records standard server information such as IP address, browser type, and pages requested, which we use to keep the site secure and working. We also use Vercel Web Analytics and Speed Insights, which count page visits and measure page load speed without cookies and without identifying you.</li>
             </ul>
 
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">How we use your information</h2>
@@ -106,7 +112,7 @@
             <p>We do not sell your personal information.</p>
 
             <h2 id="sms" class="text-3xl font-bold mb-5 mt-12 gradient-text">Text messaging (SMS)</h2>
-            <p>If you opt in to text messages from LPLED, we use your mobile number to send you messages about LED display projects you are involved in, such as project status updates, installation and crew scheduling, arrival, delivery, and site coordination notices, invoice and payment reminders, and service or warranty updates. Message frequency varies. Message and data rates may apply. You can opt out at any time by replying <strong class="text-white">STOP</strong> to any message, and you can reply <strong class="text-white">HELP</strong> for help. You must be 18 or older, and the account holder of the mobile number or have the account holder&rsquo;s permission, to sign up for text messages. Full program details are in our <a href="/terms#sms" class="text-amber-400 hover:text-amber-300 transition-colors">Text Messaging Terms</a>.</p>
+            <p>If you opt in to text messages from LPLED, we use your mobile number to send you messages about LED display projects you are involved in, such as project status updates, installation and crew scheduling, arrival, delivery, and site coordination notices, invoice and payment reminders, and service or warranty updates. Message frequency varies. Message and data rates may apply. You can opt out at any time by replying <strong class="text-white">STOP</strong> to any message, and you can reply <strong class="text-white">HELP</strong> for help. You must be 18 or older, and the account holder of the mobile number or have the account holder&rsquo;s permission, to sign up for text messages. Full program details are in our <a href="/terms#sms" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">Text Messaging Terms</a>.</p>
             <p><strong class="text-white">No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.</strong> Information sharing to subcontractors in support services, such as customer service or the text message delivery provider that sends our messages, is permitted. All other use case categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
 
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">How we share information</h2>
@@ -140,16 +146,18 @@
             <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Contact us</h2>
             <p>LPCREATIVE, LLC (LPLED)<br>
             Smithville, Tennessee<br>
-            Phone: <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 transition-colors">(615) 815-7685</a><br>
-            Email: <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 transition-colors">lucas@lpcreative.studio</a></p>
+            Phone: <a href="tel:+16158157685" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">(615) 815-7685</a><br>
+            Email: <a href="mailto:lucas@lpcreative.studio" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">lucas@lpcreative.studio</a></p>
         </div>
     </section>
+
+    </main>
 
     <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img width="1200" height="312" src="images/namelogowhite.png" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
                     <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN &mdash; serving Tennessee and nationwide.</p>
                 </div>
                 <div>
@@ -186,5 +194,8 @@
             </div>
         </div>
     </footer>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
