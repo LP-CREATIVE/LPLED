@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fan Zone App: Your School&rsquo;s Videoboard on Every Phone | LPLED</title>
+    <meta name="description" content="Fan Zone is a free app for schools with an LPLED videoboard: live score, roster, polls and trivia from the board, and deals from team sponsors. Coming soon to iPhone and Android.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://www.lpcreative.studio/fan-zone-app">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fan Zone App: Your School&rsquo;s Videoboard on Every Phone | LPLED">
+    <meta property="og:description" content="Fan Zone is a free app for schools with an LPLED videoboard: live score, roster, polls and trivia from the board, and deals from team sponsors. Coming soon to iPhone and Android.">
+    <meta property="og:url" content="https://www.lpcreative.studio/fan-zone-app">
+    <meta property="og:site_name" content="LPLED by LPCREATIVE, LLC">
+    <meta property="og:image" content="https://www.lpcreative.studio/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fan Zone App: Your School&rsquo;s Videoboard on Every Phone | LPLED">
+    <meta name="twitter:description" content="Fan Zone is a free app for schools with an LPLED videoboard: live score, roster, polls and trivia from the board, and deals from team sponsors. Coming soon to iPhone and Android.">
+    <meta name="twitter:image" content="https://www.lpcreative.studio/images/og-image.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MobileApplication",
+          "name": "Fan Zone – School Videoboard",
+          "description": "Free app that puts a school's LED videoboard on fans' phones: live score, roster and schedule, polls and trivia from the board, sponsor deals, a fan message board, and points.",
+          "url": "https://www.lpcreative.studio/fan-zone-app",
+          "operatingSystem": "iOS, Android",
+          "applicationCategory": "SportsApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.lpcreative.studio/#business",
+            "name": "LPLED by LPCREATIVE, LLC",
+            "url": "https://www.lpcreative.studio"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Fan Zone free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The app is free to download for fans and free for schools."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "My school is not listed. Can we get it?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fan Zone is built for schools with an LPLED videoboard. If your school is planning a new board, request a quote and ask about Fan Zone, or have your athletic director call us."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who can use it?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Anyone 13 or older with an email address. Fans create an account, pick their school and team, and they are in."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are the scores official?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Scores come from the scoreboard operator at the game, so they match the board. They are not official records."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="css/tailwind.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            overflow-x: hidden;
+            background: #111827;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e04829 0%, #f75f3f 50%, #fa8066 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #e04829, #f75f3f);
+            color: #1f2937;
+            font-weight: 700;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(224, 72, 41, 0.5);
+        }
+
+        .dark-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .dark-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+        }
+
+        .prose p { margin-bottom: 1rem; }
+        .prose ul { margin: 0 0 1rem 1.5rem; }
+        .prose li { margin-bottom: 0.5rem; }
+    </style>
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full backdrop-blur-md bg-[#1f2937]/95 border-b border-gray-700 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-1">
+            <div class="flex justify-between items-center">
+                <a href="/" class="min-w-0"><img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-16 w-auto object-contain object-left"></a>
+                <div class="hidden md:flex space-x-8 text-white/90 font-medium">
+                    <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
+                    <a href="/projects" class="hover:text-amber-400 transition-colors">Projects</a>
+                    <a href="/#packages" class="hover:text-amber-400 transition-colors">Pricing</a>
+                    <a href="/#contact" class="hover:text-amber-400 transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="tel:+16158157685" class="hidden sm:inline-block text-white font-semibold text-sm hover:text-amber-400 transition-colors">(615) 815-7685</a>
+                    <a href="/quote" class="glow-button px-6 py-2 rounded-full font-semibold inline-block">Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+    <section class="pt-32 pb-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block mb-5 px-4 py-1 rounded-full border border-amber-500 text-amber-400 text-sm font-semibold">Coming soon to iPhone and Android</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Fan Zone: Your School&rsquo;s Videoboard, Live on Every Fan&rsquo;s Phone</h1>
+            <p class="text-xl text-gray-300">Fan Zone is our free mobile app for schools with an LPLED videoboard. Fans follow the live score from their seat, vote in polls the moment they hit the board, and claim deals from the local businesses backing their team.</p>
+            <div class="mt-8 flex flex-wrap gap-4">
+                <a href="/quote" class="glow-button px-8 py-3 rounded-full inline-block">Bring Fan Zone to Your School</a>
+                <a href="tel:+16158157685" class="border-2 border-amber-500 text-amber-400 px-8 py-3 rounded-full font-semibold inline-block hover:bg-amber-500 hover:text-gray-900 transition-colors">Call (615) 815-7685</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-12 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img width="480" height="1044" loading="lazy" decoding="async" src="images/app/fanzone-live.webp" alt="Fan Zone Live tab showing the score, clock, down and distance, and scoring by quarter for a Riverdale Warriors football game" class="w-full rounded-2xl border border-white/10">
+                <img width="480" height="1044" loading="lazy" decoding="async" src="images/app/fanzone-play.webp" alt="Fan Zone Play tab showing a live player of the game poll with vote percentages" class="w-full rounded-2xl border border-white/10">
+                <img width="480" height="1044" loading="lazy" decoding="async" src="images/app/fanzone-shop.webp" alt="Fan Zone Shop tab showing deals from local businesses that sponsor the team" class="w-full rounded-2xl border border-white/10">
+                <img width="480" height="1044" loading="lazy" decoding="async" src="images/app/fanzone-board.webp" alt="Fan Zone Board tab showing a message board of posts from the school's fans" class="w-full rounded-2xl border border-white/10">
+            </div>
+            <p class="text-sm text-gray-400 text-center mt-4">App preview shown with demo players and sponsors.</p>
+        </div>
+    </section>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-4xl mx-auto prose text-gray-300 text-lg">
+            <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">What fans get</h2>
+            <ul class="list-disc">
+                <li><strong class="text-white">Live score.</strong> The score, clock, down and distance, scoring by quarter, and team stats, straight from the scoreboard at the game. Fans see the same numbers the board is showing.</li>
+                <li><strong class="text-white">Team.</strong> The roster with positions and bios, plus the full schedule with results.</li>
+                <li><strong class="text-white">Play.</strong> When the press box puts a poll, trivia question, or crowd meter on the videoboard, it opens on every fan&rsquo;s phone at the same moment. Fans vote and watch the tally move live.</li>
+                <li><strong class="text-white">Shop.</strong> Deals from the local businesses that sponsor the team. Fans show the offer at the counter to claim it.</li>
+                <li><strong class="text-white">Board.</strong> A message board for the school&rsquo;s fans, with reporting and blocking built in.</li>
+                <li><strong class="text-white">Points and levels.</strong> Voting, claiming deals, and posting earn points, and fans climb their school&rsquo;s leaderboard.</li>
+            </ul>
+            <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Why it matters for schools</h2>
+            <p>A videoboard only reaches the people looking at it. Fan Zone puts the board on every phone in the stands, so the student section, the parents on the far side, and the fans following from home all see the same game, the same polls, and the same sponsors.</p>
+            <p>Fan Zone is free for schools. It connects to the scoreboard software that runs our boards, so the score and the polls come straight from your press box.</p>
+            <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">More value for your sponsors</h2>
+            <p>Every poll can be &ldquo;presented by&rdquo; a sponsor, and every deal in the Shop tab sends a fan to a sponsor&rsquo;s counter. That gives sponsors something they can see working, not just a logo on the board, which makes them easier to sign and easier to renew. See <a href="/scoreboard-sponsorship" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">how a scoreboard pays for itself with sponsors</a>.</p>
+            <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Where it is launching</h2>
+            <p>Fan Zone launches first at the Tennessee schools already on our videoboard network: Riverdale, Siegel, Smith County, Gordonsville, Jackson County, Seymour, and Friendship Christian. It covers football, baseball, softball, soccer, and basketball, depending on the boards at each school.</p>
+            <p>The app is in review with Apple and Google now. We will link the App Store and Google Play here as soon as it is live.</p>
+            <h2 class="text-3xl font-bold mb-5 mt-12 gradient-text">Questions</h2>
+            <h3 class="text-xl font-bold text-white mb-2 mt-8">Is Fan Zone free?</h3>
+            <p>Yes. The app is free to download for fans and free for schools.</p>
+            <h3 class="text-xl font-bold text-white mb-2 mt-8">My school is not listed. Can we get it?</h3>
+            <p>Fan Zone is built for schools with an LPLED videoboard. If your school is planning a new board, <a href="/quote" class="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">request a quote</a> and ask about Fan Zone, or have your athletic director call us.</p>
+            <h3 class="text-xl font-bold text-white mb-2 mt-8">Who can use it?</h3>
+            <p>Anyone 13 or older with an email address. Fans create an account, pick their school and team, and they are in.</p>
+            <h3 class="text-xl font-bold text-white mb-2 mt-8">Are the scores official?</h3>
+            <p>Scores come from the scoreboard operator at the game, so they match the board. They are not official records.</p>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-gradient-to-br from-[#1f2937] via-[#111827] to-[#1f2937]">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4"><span class="gradient-text">Ready to talk numbers?</span></h2>
+            <p class="text-gray-300 mb-8">Tell us the venue, the viewing distance, and the season you need it working. We'll come back with an itemized quote within one business day.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="/quote" class="glow-button px-8 py-3 rounded-full inline-block">Request a Quote</a>
+                <a href="tel:+16158157685" class="border-2 border-amber-500 text-amber-400 px-8 py-3 rounded-full font-semibold inline-block hover:bg-amber-500 hover:text-gray-900 transition-colors">(615) 815-7685</a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="bg-gradient-to-b from-[#1f2937] to-[#111827] border-t border-gray-700 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img width="500" height="130" src="images/namelogowhite-500.webp" alt="LPLED by LPCREATIVE, LLC" class="h-10 w-auto mb-4">
+                    <p class="text-gray-400">Professional LED displays and scoreboards based in Smithville, TN &mdash; serving Tennessee and nationwide.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Products</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/#packages" class="hover:text-white transition-colors">Display Packages</a></li>
+                        <li><a href="/quote" class="hover:text-white transition-colors">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Solutions</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/football-scoreboards" class="hover:text-white transition-colors">Football Scoreboards</a></li>
+                        <li><a href="/baseball-softball-scoreboards" class="hover:text-white transition-colors">Baseball &amp; Softball</a></li>
+                        <li><a href="/softball-scoreboards" class="hover:text-white transition-colors">Softball Scoreboards</a></li>
+                        <li><a href="/basketball-video-boards" class="hover:text-white transition-colors">Basketball Video Boards</a></li>
+                        <li><a href="/led-video-walls" class="hover:text-white transition-colors">LED Video Walls</a></li>
+                        <li><a href="/scoreboard-software" class="hover:text-white transition-colors">Scoreboard Software</a></li>
+                        <li><a href="/led-scoreboards-middle-tennessee" class="hover:text-white transition-colors">Middle Tennessee</a></li>
+                        <li><a href="/scoreboard-sponsorship" class="hover:text-white transition-colors">Sponsor-Funded Boards</a></li>
+                        <li><a href="/fan-zone-app" class="hover:text-white transition-colors">Fan Zone App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="tel:+16158157685" class="hover:text-white transition-colors">(615) 815-7685</a></li>
+                        <li><a href="mailto:lucas@lpcreative.studio" class="hover:text-white transition-colors">lucas@lpcreative.studio</a></li>
+                        <li><a href="/quote" class="hover:text-white transition-colors">Request a Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 LPLED by LPCREATIVE, LLC. All rights reserved.</p>
+                <p class="mt-2 text-sm"><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a> &middot; <a href="/terms" class="hover:text-white transition-colors">Terms</a> &middot; <a href="/updates" class="hover:text-white transition-colors">Project Updates Sign-Up</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
